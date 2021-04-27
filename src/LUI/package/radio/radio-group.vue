@@ -16,7 +16,7 @@
     name:'LRadioGroup',
     componentName:'LRadioGroup',
     props:{
-      value:[String,Number,Boolean],
+      modelValue:[String,Number,Boolean],
       disabled:Boolean,
       type:String,
       fill:String

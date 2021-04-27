@@ -3,7 +3,7 @@
    'l-radio',
     radioType ? `l-radio-${radioType}` : null,
     model === value && radioType === 'button' ? 'is-checked' : '',
-    _radioGroup && _radioGroup._props.disabled ? '' : disabled ? 'is-disabled' : '']"
+    _radioGroup && _radioGroup.disabled ? '' : disabled ? 'is-disabled' : '']"
     :style="model === value ? activeStyle : ''"
     >
     <input
@@ -23,11 +23,8 @@
 <script>
   export default {
     name:'LRadio',
-    model:{
-      prop:'checked', 
-    },
     props:{
-      checked:[String,Boolean,Number],
+      modelValue:[String,Boolean,Number],
       value:[String,Boolean,Number],
       name:String,
       label:String,
@@ -52,21 +49,21 @@
       },
       model:{
         get(){
-          return this._radioGroup ? this._radioGroup.value : this.checked
+          return this._radioGroup ? this._radioGroup.modelValue : this.modelValue
         },
         set(val){
-          this._radioGroup ? this._radioGroup.$emit('input',val) : this.$emit('input',val)
+          this._radioGroup ? this._radioGroup.$emit('update:modelValue',val) : this.$emit('update:modelValue',val)
         }
       },
       isDisabled(){
-        return this.disabled || Boolean(this._radioGroup && this._radioGroup._props.disabled)
+        return this.disabled || Boolean(this._radioGroup && this._radioGroup.disabled)
       },
       radioType(){
-        return (this._radioGroup && this._radioGroup._props.type) || this.type
+        return (this._radioGroup && this._radioGroup.type) || this.type
       },
       activeStyle(){
-        if(!this._radioGroup || this._radioGroup._props.type !== 'button' || this._radioGroup._props.disabled) return
-        let color = this._radioGroup._props.fill || null
+        if(!this._radioGroup || this._radioGroup.type !== 'button' || this._radioGroup.disabled) return
+        let color = this._radioGroup.fill || null
         return {
           backgroundColor: color || '',
           borderColor: color || ''
