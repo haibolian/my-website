@@ -4,7 +4,8 @@
           size ? 'l-input-' + size : '',
           disabled ? 'is-disabled':'',
           $slots.append || append ? 'l-input-group-append' : ''
-          ]">
+          ]"
+      :style="`width:${width}`">
       <div v-if="$slots.prepend || prepend" class="l-input-prepend">
         <slot name="prepend">{{ prepend }}</slot>
       </div>
@@ -13,7 +14,7 @@
       v-bind="$attrs"
       class="l-input-inner"
       :disabled="disabled"
-      :value="$attrs.value"
+      :value="modelValue"
       :type="showType"
       @compositionstart="handleCompositionstart"
       @compositionend="handleCompositionend"
@@ -30,7 +31,7 @@
         <slot name="prefix"></slot>
       </span>
       <span v-if="clearable || suffixIcon || showPassword || $slots.suffix || openWordLimitPass" ref="l-icon-suffix-box" class="l-icon-suffix-box">
-        <i v-if="clearable" v-show="$attrs.value" @click="clear" class="l-icon icon-error"></i>
+        <i v-if="clearable" v-show="modelValue" @click="clear" class="l-icon icon-error"></i>
         <i v-if="suffixIcon" :class="`l-icon icon-${suffixIcon} ${suffixIconClickable ? '' : 'l-icon-readonly'}`" @click="clickSuffixIcon"></i>
         <slot name="suffix"></slot>
         <i v-if="type === 'password' && showPassword" @click="toggleShow" :class="['l-icon',pswIconValue ? 'icon-browse' : 'icon-eye-close']"></i>
@@ -44,6 +45,7 @@ export default {
   inheritAttrs:false,
   name:'LInput',
   props:{
+    modelValue:[String],
     type: {
       type:String, 
       default: 'text',
@@ -53,6 +55,7 @@ export default {
         console.error(`the ${val} is not supportable type`);
       },
     },
+    width:[String],
     size: { type:String },
     disabled: { type:Boolean },
     clearable: { type:Boolean },
@@ -90,7 +93,7 @@ export default {
   },
   methods:{
     clear(){
-      this.$emit('input','')
+      this.$emit('update:modelValue','')
       this.$emit('clear')
       this.$refs['l-input-inner'].focus()
     },
@@ -119,6 +122,7 @@ export default {
       if(this.isComposition) return 
       let value = ev.target.value
       let length = this.wordLength = value.length
+      this.$emit('update:modelValue',value)
       this.$emit('input',value)
       if(this.clearable || this.openWordLimitPass)
         (length === 0 || length === 1 || length === 10 || length === 100) ? this.$nextTick(()=>{this.setPaddingByIcons()}) : ''
