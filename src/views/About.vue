@@ -1,7 +1,6 @@
 <template>
   <div class="about">
-    <canvas id="sakura"></canvas>
-    <div class="btnbg"></div>
+    sad
   </div>
 </template>
 
