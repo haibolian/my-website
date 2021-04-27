@@ -1,11 +1,15 @@
 <template>
   <div class="home">
-
+    <svg-icon icon-name='search'></svg-icon>
   </div>
 </template>
 
-<script>
+<script>  
+// import SvgIcon from '@/components/SvgIcon/index'
   export default {
+    components:{
+      // SvgIcon
+    },
     data() {
       return {
         

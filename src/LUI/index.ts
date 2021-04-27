@@ -23,7 +23,7 @@ let components = [
   LOption
 ]
 
-const install = (Vue)=>{
+const install = (Vue:any)=>{
   components.forEach(component=>{
     Vue.component(component.name,component)
   })
