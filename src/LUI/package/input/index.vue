@@ -80,7 +80,7 @@ export default {
     this.$nextTick(()=>{
       setTimeout(() => {
         this.setPaddingByIcons()
-      });
+      }); 
     })
   },
   computed:{
