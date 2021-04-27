@@ -46,11 +46,8 @@ import { controllers,controlleds,mutations } from './store'
   export default {
     name:'LCheckbox',
     componentName:'LCheckbox',
-    model:{
-      prop: 'bindValue'
-    },
     props:{
-      bindValue:[String,Number,Boolean,Array],
+      modelValue:[String,Number,Boolean,Array],
       checked:Boolean,
       value: {
         type:[Number,String,Boolean],
@@ -90,14 +87,14 @@ import { controllers,controlleds,mutations } from './store'
       },
       model:{
         get(){
-          return this._checkboxGroup ? this._checkboxGroup._props.value : this.bindValue
+          return this._checkboxGroup ? this._checkboxGroup.modelValue : this.modelValue
         },
         set(val){
-          this._checkboxGroup ? this._checkboxGroup.$emit('input',val) : this.$emit('input',val)
+          this._checkboxGroup ? this._checkboxGroup.$emit('update:modelValue',val) : this.$emit('update:modelValue',val)
           this.controls ?
             this.handleControl()
-            : this._checkboxGroup && this._checkboxGroup._props.controlId && controllers[this._checkboxGroup._props.controlId] ? 
-              (controllers[this._checkboxGroup._props.controlId].controlledArr = val) 
+            : this._checkboxGroup && this._checkboxGroup.controlId && controllers[this._checkboxGroup.controlId] ? 
+              (controllers[this._checkboxGroup.controlId].controlledArr = val) 
               : ''
         }
       },
@@ -120,7 +117,7 @@ import { controllers,controlleds,mutations } from './store'
         }
       },
       isAllDye(){
-        return this._checkboxGroup && this._checkboxGroup._props.allDye || this.allDye
+        return this._checkboxGroup && this._checkboxGroup.allDye || this.allDye
       },
       isLimitDisabled() {
         if(!this._checkboxGroup) return false
@@ -130,7 +127,7 @@ import { controllers,controlleds,mutations } from './store'
           (this.model.length <= min && this.isChecked);
       },
       isDisabled(){
-        return (this._checkboxGroup && this._checkboxGroup._props.disabled) || this.disabled || this.isLimitDisabled
+        return (this._checkboxGroup && this._checkboxGroup.disabled) || this.disabled || this.isLimitDisabled
       },
     },
     methods:{
@@ -154,10 +151,10 @@ import { controllers,controlleds,mutations } from './store'
         let checkedLength = checked.length
         if(checkedLength >= 0 && checkedLength < this.checkOptions.length){
           this.controlledArr = this.checkOptions
-          controlled.$emit('input',this.checkOptions)
+          controlled.$emit('update:modelValue',this.checkOptions)
         }else if(checkedLength === this.checkOptions.length){
           this.controlledArr = []
-          controlled.$emit('input',this.controlledArr)
+          controlled.$emit('update:modelValue',this.controlledArr)
         }
       }
     },

@@ -9,7 +9,7 @@ import { controlleds,controllers,mutations } from './store'
     name:'LCheckboxGroup',
     componentName:'LCheckboxGroup',
     props:{
-      value:Array,
+      modelValue:Array,
       allDye:Boolean,
       controlId:String,
       disabled:Boolean,
