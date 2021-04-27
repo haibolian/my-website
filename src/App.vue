@@ -1,30 +1,40 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div>
+    <sakura @finishWrite="finishWrite" v-if="showAnimation"></sakura>
+    <div v-else id="nav">
+      <router-link to="/">首页</router-link>
+      <router-link to="/about">关于</router-link>
+    </div>
+    <router-view/>
   </div>
-  <router-view/>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  name:'APP',
+  components:{
+    Sakura: ()=>import('@/components/sakura/index.vue')
+  },
+  data(){
+    return{
+      showAnimation:false,
+    }
+  },
+  methods:{
+    finishWrite(){ 
+      this.showAnimation = false
     }
   }
+}
+</script>
+
+<style lang="scss" scoped>
+#nav{
+  animation: getInto 0.75s;
+  -webkit-animation: getInto 0.75s;
+}
+@keyframes getInto {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
 </style>
