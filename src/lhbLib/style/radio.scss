@@ -1,0 +1,71 @@
+@import './variables.scss';
+.l-radio-group{
+  display: inline-block;
+  height: 32px;
+  .l-radio-group-content{
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    height: 100%;
+  }
+}
+.l-radio { cursor: pointer; }
+.l-radio:not(.l-radio-button){
+  display: inline-block; 
+  margin-right: 17px;
+  .l-radio-label{ padding-left: 7px; }  
+}
+
+.l-radio-button{
+  height: 100%;
+  border-radius: $border-radius;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 0 10px;
+  .l-radio-inner{
+    display: none;
+  }
+  .l-radio-label{
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+}
+
+// type为button的边框样式
+.l-radio-button{
+  border: 1px solid $border-color-normal;
+  &.is-checked { border-color: $mainColor; background-color: $mainColor;color: #fff; }
+  border-right: none;
+  &:last-child:not(.is-checked),&:last-child.is-disabled {
+    border-right: 1px solid $border-color-normal;
+  }
+  .is-checked:not(.is-disabled) + &{
+    border-left: 1px solid rgba($color: #fff, $alpha:1);
+  }
+}
+
+.l-radio-button{
+  &:first-child{ border-radius: $border-radius 0 0 $border-radius; }
+  &:last-child { border-radius: 0 $border-radius $border-radius 0; } 
+  &:not(:first-child):not(:last-child) { border-radius: 0; }
+}
+
+// disabled样式
+.l-radio-group.is-disabled{
+  .l-radio{ color: $text-disabled; border-color: $border-color-disabled; cursor: not-allowed;}
+  .l-radio.l-radio-button { background-color: $background-color-disabled; }
+  .l-radio.is-checked{
+    background-color: $background-color-disabled-active;
+  }
+}
+.l-radio.is-disabled.l-radio-button{
+  cursor: not-allowed;
+  color: $text-disabled;
+  background-color: $background-color-disabled;
+  &.is-checked{background-color: $background-color-disabled-active;border-color: $border-color-disabled;}
+}
+.l-radio.is-disabled:not(.l-radio-button){
+  background-color: #fff;
+  color: $text-disabled;
+}

@@ -1,0 +1,135 @@
+@import './variables.scss';
+@import '../icons/iconfont.css';
+.l-input{
+  width: 100%;
+  box-sizing:border-box;
+  position: relative;
+  display: flex;
+  font-size: 14px;
+}
+.l-input-inner{
+  width: 100%;
+  height: 32px;
+  box-sizing: border-box;
+  padding: 0 10px;
+  border-radius: $border-radius;
+  border: 1px solid $border-color-normal;
+  &::placeholder{
+    color: rgba($color: $text-second, $alpha: 0.7);
+  }
+}
+.l-input:not(.is-disabled) .l-input-inner:hover{
+  border-color: $border-color-hover;
+  box-shadow: $box-shadow-shallow;
+}
+.l-input:not(.is-disabled) .l-input-inner:active{
+  border-color: $border-color-active !important;
+}
+.l-input:not(.is-disabled) .l-input-inner:focus{
+  border: 1px solid $border-color-focus;
+  box-shadow: $box-shadow-shallow;
+}
+
+.l-icon-suffix-box,.l-icon-prefix-box{
+  height: 100%;
+  display: flex;
+  color: $text-second;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  *{
+    display: flex;
+    align-items: center;
+  }
+  .l-icon{
+    cursor: pointer;
+  }
+  .l-icon.l-icon-readonly{
+    cursor:default;
+  }
+}
+.l-input.is-disabled .l-icon-suffix-box .l-icon.l-icon-readonly,
+.l-input.is-disabled .l-icon-prefix-box .l-icon.l-icon-readonly{
+  cursor: not-allowed; 
+}
+.l-icon-suffix-box{
+  right: 4px;
+}
+.l-icon-prefix-box{
+  left: 4px;
+}
+.l-icon-prefix-box .l-icon{
+  margin-left: 1px;
+}
+.l-icon-prefix-box .l-icon:last-child{
+  margin-right: 5px;
+}
+.l-icon-suffix-box .l-icon{
+  margin-right: 3px;
+}
+.l-icon-suffix-box .l-icon:first-child{
+  margin-left: 5px;
+}
+.l-icon-suffix-box .l-icon:not(.l-icon-readonly):hover,
+.l-icon-prefix-box .l-icon:not(.l-icon-readonly):hover{
+  color: $mainColor;
+}
+
+
+// 前置 , 后置
+.l-input-prepend,.l-input-append{
+  border: 1px solid $border-color-normal;
+  background-color: $background-color-disabled;
+  padding: 0 5px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+.l-input-prepend{
+  border-right: none;
+  border-radius: $border-radius 0 0 $border-radius;
+}
+.l-input-append{
+  border-left: none;
+  border-radius: 0 $border-radius $border-radius 0;
+}
+
+.l-input-prepend+.l-input-inner{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.l-input-group-append .l-input-inner{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+// 尺寸 size
+.l-input-small .l-input-inner{
+  height: 28px;
+}
+.l-input-large .l-input-inner{
+  height: 36px;
+}
+
+ // 禁用
+ .l-input.is-disabled{
+   .l-input-inner{
+     background-color: $background-color-disabled;
+     border-color: $border-color-disabled;
+     cursor: not-allowed;
+   }
+   .l-icon-suffix-box{
+     cursor: not-allowed;
+   }
+}
+
+// 字数限制
+.l-input-word-limit{
+  font-size: 12px;
+  margin-right: 4px;
+  margin-left: 5px;
+  font-style: normal;
+}
+.l-icon + .l-input-word-limit{
+  margin-left: 0;
+}

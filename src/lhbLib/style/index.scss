@@ -1,0 +1,21 @@
+@import './menu.scss';
+@import './radio.scss';
+@import './input.scss';
+@import './variables.scss';
+@import './checkbox.scss';
+@import './select.scss';
+@import './animation.scss';
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+.is-active{
+  background-color: $mainColor;
+  color: #fff;
+}
+
+ul{
+  list-style: none;
+}

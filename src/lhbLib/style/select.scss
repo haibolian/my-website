@@ -1,0 +1,100 @@
+@import './variables.scss';
+.l-select{
+  display: inline-block;
+  position: relative;
+}
+.l-select,.l-select .l-select-inner:not(.is-disabled) .l-input-inner,.l-select  .l-select-inner:not(.is-disabled) .l-icon-suffix-box .l-icon.l-icon-readonly{ cursor: pointer; }
+.l-select .l-select-inner{
+  height: 32px;
+  box-sizing: border-box;
+}
+.l-select-icon{
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  display: flex;
+  align-items: center;
+}
+
+// 下拉
+.l-select-dropdown{
+  background-color: #fff;
+  width: 100%;
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid $border-color-second;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow-shallow;
+  padding: 5px 0;
+  font-size: 14px;
+  margin-top: 8px;
+  z-index: 10;
+  cursor: default;
+  .l-select-dropdown-options{
+    max-height: 300px;
+    overflow: auto;
+    list-style: none;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    .l-select-option{
+      box-sizing: border-box;
+      height: 34px;
+      line-height: 34px;
+      padding: 0 20px;
+      &:hover{ background-color: $background-color-second; cursor: pointer;}
+      &.is-checked{ color: $mainColor; font-weight: bold ; }
+      &.is-disabled { color: $text-disabled; cursor: not-allowed;
+        &:hover{ background-color:unset; }
+      }
+      &.is-filtered { display: none; }
+    }
+    .l-select-empty{
+      text-align: center;
+      color: $text-disabled;
+      cursor: default !important;
+    }
+  }
+}
+// 箭头
+.l-select-dropdown::before{
+  background-color: #fff;
+  border-top: 1px solid $border-color-second;
+  border-left: 1px solid $border-color-second;
+  transform: rotate(45deg);
+  position: absolute;
+  left: 20px;
+  top: -4px;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  content: '';
+}
+.l-select-dropdown.l-select-direction-top::before{
+  top: unset;
+  bottom: -4px;
+  border: 1px solid $border-color-second;
+  border-top: unset;
+  border-left: unset;
+}
+
+// 下拉箭头动画
+.l-icon.icon-arrow-down{
+  // font-size: 14px;
+  transform: rotate(0deg);
+  transition: transform .2s;
+}
+.l-icon.icon-arrow-down.is-reverse{
+  transform: rotate(-180deg);
+  transition: transform .2s;
+}
+
+// 滚动条
+.l-select-dropdown-options::-webkit-scrollbar{
+  width: 6px;
+}
+.l-select-dropdown-options::-webkit-scrollbar-thumb{
+  background-color: $scrollbar-thumb-color;
+  border-radius: 6px;
+  &:hover{ background-color: $scrollbar-thumb-hover-color }
+}

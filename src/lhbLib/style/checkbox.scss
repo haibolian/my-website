@@ -1,0 +1,52 @@
+@import './variables.scss';
+
+input[type=checkbox]{
+  display: none;
+}
+.l-checkbox{
+  margin-right: 20px;
+}
+// 通用样式
+.l-checkbox-inner { 
+  position: relative;
+  vertical-align: middle; 
+}
+.l-checkbox-inner .l-checkbox-icon{
+  width: 14px;
+  height: 14px;
+  font-size: 12px;
+  border-radius: $border-radius;
+  border: 1px solid $border-color-normal;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: inline-block;
+  &::before{
+    position: absolute;
+    line-height: 1;
+  }
+}
+
+.l-checkbox-label{
+  cursor: pointer;
+  padding-left: 5px;
+}
+
+// 已选样式
+.l-checkbox.is-checked:not(.is-disabled) .l-checkbox-inner .l-checkbox-icon,
+.l-checkbox.is-indeterminate:not(.is-disabled) .l-checkbox-inner .l-checkbox-icon{
+  color: #fff;
+  border-color: $mainColor;
+  background-color: $mainColor;
+}
+// .l-checkbox.is-indeterminate .l-checkbox-inner .l-checkbox-icon{
+//   font-size: 12px;
+// } 
+
+.is-all-dye.is-checked .l-checkbox-label{ color: $mainColor; }
+
+// 禁用样式
+.l-checkbox.is-disabled{
+  .l-checkbox-inner .l-checkbox-icon{ cursor: not-allowed; background-color: $background-color-disabled; }
+  .l-checkbox-label { cursor: not-allowed; color: $text-second; }
+
+}
