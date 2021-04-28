@@ -33,7 +33,7 @@ function createDocumentHandler(el,binding,vnode){
 }
 
 export default {
-  bind(el,binding,vnode){
+  beforeMount(el,binding,vnode){
     nodeList.push(el)
     const id = seed++
     el[ctx] = {
@@ -43,12 +43,12 @@ export default {
       documentHandler: createDocumentHandler(el,binding,vnode)
     }
   },
-  updata(el,binding,vnode){
+  updated(el,binding,vnode){
     el[ctx].documentHandler = createDocumentHandler(el, binding, vnode);
     el[ctx].methodName = binding.expression;
     el[ctx].bindingFn = binding.value;
   },
-  unbind(el){
+  unmounted(el){
     let len = nodeList.length
     for( let i = 0 ; i < len ; i++){
       if(el[ctx].id === nodeList[i][ctx].id){

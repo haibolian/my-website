@@ -3,14 +3,13 @@
     :class="['l-select']"
     @click="toggleMenu"
     v-clickoutside='handleClose'
+    @mouseenter="isHovering = true"
+    @mouseleave="isHovering = false"
     >
     <l-input
       ref="select_inner"
       :placeholder="placeholderText"
       class="l-select-inner"
-      @mouseenter.native="isHovering = true"
-      @mouseleave.native="isHovering = false"
-      :value='options[value] || value'
       v-model="searchText"
       :readonly="readonly"
       :disabled="disabled"
@@ -44,6 +43,7 @@
 </template>
 <script>
 import clickoutside from '../../src/utils/clickoutside.js'
+import { nextTick } from 'vue'
   export default {
     name:'LSelect',
     componentName:'LSelect',
@@ -62,7 +62,7 @@ import clickoutside from '../../src/utils/clickoutside.js'
       };
     },
     props:{
-      value:[String,Boolean,Number,Array],
+      modelValue:[String,Boolean,Number,Array],
       disabled:Boolean,
       clearable:Boolean,
       filterable:Boolean,
@@ -73,7 +73,7 @@ import clickoutside from '../../src/utils/clickoutside.js'
     },
     computed:{
       hasValue(){
-        return Array.isArray(this.value) ? this.value.length : this.value
+        return Array.isArray(this.modelValue) ? this.modelValue.length : this.modelValue
       },
       showClear(){
         return !this.disabled && this.clearable && this.hasValue && this.isHovering
@@ -82,26 +82,28 @@ import clickoutside from '../../src/utils/clickoutside.js'
         return !this.filterable || !this.showOptions
       },
       placeholderText(){
-        return this.options[this.value] || this.placeholder
+        return this.options[this.modelValue] || this.placeholder
       },
     },
     methods:{
       clear(){
-        this.$emit('input','')
+        this.$emit('update:modelValue','')
+        this.searchText = ''
+        this.showOptions = false
       },
       handleClose(){
         this.showOptions = false
         if(this.filterable){
-          !this.showOptions ? this.searchText =this.options[this.value] : this.searchText = ''
+          !this.showOptions ? this.searchText =this.options[this.modelValue] : this.searchText = ''
         }
       },
       toggleMenu(ev){
         if(!this.disabled) this.showOptions = !this.showOptions
         this.showNoData = false
         if(this.filterable){
-          !this.showOptions ? this.searchText =this.options[this.value] : this.searchText = ''
+          !this.showOptions ? this.searchText =this.options[this.modelValue] : this.searchText = ''
         }
-        this.$nextTick(()=>{
+        nextTick(()=>{
           this.showOptions && this.setMenuShowDirection(ev)
         })
       },
@@ -120,7 +122,7 @@ import clickoutside from '../../src/utils/clickoutside.js'
       }
     },
     mounted(){
-      this.searchText = this.options[this.value] || this.value
+      this.searchText = this.options[this.modelValue] || this.modelValue
     }
   };
   

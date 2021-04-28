@@ -1,17 +1,17 @@
 @import './variables.scss';
 
 // 上拉，下拉
-.slide-down-enter-active, .slide-down-leave-active, .slide-up-enter-active, .slide-up-leave-active{
+.slide-down-enter-to, .slide-down-leave-from, .slide-up-enter-to, .slide-up-leave-from{
   transition: transform .2s cubic-bezier(0.23, 0.8, 0.32, 1), opacity .2s cubic-bezier(0.23, 0.8, 0.32, 1);
 }
-.slide-down-enter, .slide-down-leave-to, .slide-up-enter, .slide-up-leave-to {
+.slide-down-enter-from, .slide-down-leave-to, .slide-up-enter-from, .slide-up-leave-to {
   opacity: 0;
   transform: scaleY(0);
 }
-.slide-down-enter-active, .slide-down-leave-active{
+.slide-down-enter-to, .slide-down-leave-from{
   transform-origin: center top;
 }
 // 上拉
-.slide-up-enter-active, .slide-up-leave-active {
+.slide-up-enter-to, .slide-up-leave-from {
   transform-origin: center bottom;
 }

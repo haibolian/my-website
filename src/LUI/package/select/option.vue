@@ -32,10 +32,10 @@
         }
       },
       isChecked(){
-        return this._select.value === this.value
+        return this._select.modelValue === this.value
       },
       text(){
-        return (this.$slots.default && this.$slots.default[0].text) || this.label
+        return this.label || this.value
       },
       filterable(){
         if(this._select.filterable){
@@ -46,8 +46,8 @@
     methods:{
       click(){
         if(this.disabled || !this._select) return
-        if(this.value !== this._select.value){
-          this._select.$emit('input',this.value)
+        if(this.value !== this._select.modelValue){
+          this._select.$emit('update:modelValue',this.value)
           this._select.$emit('change',this.value)
         }
         this._select.setSearchText(this.text)
@@ -55,7 +55,7 @@
       }
     },
     created(){
-      this.$set(this._select.options,this.value,this.text)
+      this._select.options[this.value] = this.text
     }
   };
 
