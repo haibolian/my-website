@@ -46,6 +46,7 @@ import clickoutside from '../../src/utils/clickoutside.js'
 import { nextTick } from 'vue'
   export default {
     name:'LSelect',
+    emits:['change'],
     componentName:'LSelect',
     directives:{clickoutside},
     data() {

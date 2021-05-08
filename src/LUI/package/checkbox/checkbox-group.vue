@@ -8,6 +8,7 @@ import { controlleds,controllers,mutations } from './store'
   export default {
     name:'LCheckboxGroup',
     componentName:'LCheckboxGroup',
+    emits:['change'],
     props:{
       modelValue:Array,
       allDye:Boolean,

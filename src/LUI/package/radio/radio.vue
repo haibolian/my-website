@@ -23,6 +23,7 @@
 <script>
   export default {
     name:'LRadio',
+    emits:[ 'change' ],
     props:{
       modelValue:[String,Boolean,Number],
       value:[String,Boolean,Number],

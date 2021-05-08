@@ -44,6 +44,7 @@
 export default {
   inheritAttrs:false,
   name:'LInput',
+  emits:[ 'clear','clickPrefixIcon','clickSuffixIcon','input','change','blur','focus' ],
   props:{
     modelValue:[String],
     type: {

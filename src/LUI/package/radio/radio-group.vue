@@ -14,6 +14,7 @@
 <script>
   export default {
     name:'LRadioGroup',
+    emits:['change'],
     componentName:'LRadioGroup',
     props:{
       modelValue:[String,Number,Boolean],
