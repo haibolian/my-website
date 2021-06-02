@@ -12,14 +12,28 @@ export function getType(target){
 /**
  * @cloneshallow 浅拷贝
  */
-
- export function cloneshallow(target){
-  
+export function cloneshallow(target){
+  if(typeof target === 'object' && target !== null){
+    let cloneTarget = Array.isArray(target) ? [] : {}
+    for (const key in cloneTarget) {
+      if (target.hasOwnProperty(key)) {
+        cloneTarget[key] = target[key]
+      }
+    }
+    return cloneTarget
+  }else{
+    return target
+  }
 }
 
 /**
  * @clonedeep 深拷贝
  */
 export function clonedeep(target){
-
+  if(typeof target === 'object' && target !== null){
+    let cloneTarget = Array.isArray(target) ? [] : {}
+    
+  }else{
+    return target
+  }
 }
