@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'fzjt';
+  src: url('~@/assets/fonts/FZJT.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'fzls';
+  src: url('~@/assets/fonts/FZLS.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
