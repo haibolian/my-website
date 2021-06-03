@@ -10,10 +10,11 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
 export default {
   name:'APP',
   components:{
-    Sakura: ()=>import('@/components/sakura/index.vue')
+    Sakura: defineAsyncComponent(()=>import('@/components/sakura/index.vue')) 
   },
   data(){
     return{
