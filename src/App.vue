@@ -1,11 +1,13 @@
 <template>
   <div>
-    <sakura @finishWrite="finishWrite" v-if="showAnimation"></sakura>
-    <div v-else id="nav">
-      <router-link to="/">首页</router-link>
-      <router-link to="/about">关于</router-link>
+    <waves v-if="showAnimation"></waves>
+    <div v-else>
+      <div id="nav">
+        <router-link to="/">首页</router-link>
+        <router-link to="/about">关于</router-link>
+      </div>
+      <router-view/>
     </div>
-    <router-view/>
   </div>
 </template>
 
@@ -14,11 +16,12 @@ import { defineAsyncComponent } from 'vue'
 export default {
   name:'APP',
   components:{
-    Sakura: defineAsyncComponent(()=>import('@/components/sakura/index.vue')) 
+    Sakura: defineAsyncComponent(()=>import('@/components/sakura/index')),
+    Waves: defineAsyncComponent(()=>import('@/components/waves/index'))
   },
   data(){
     return{
-      showAnimation:false,
+      showAnimation:true,
     }
   },
   methods:{
