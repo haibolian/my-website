@@ -68,6 +68,8 @@ export default {
 
 <style lang="scss" scoped>
 .verse-container{
+  width: 100%;
+  text-align: center;
   color: #111111;
   position: absolute;
   top: 30vh;
@@ -77,6 +79,8 @@ export default {
   -webkit-animation: fade-in 1s ease ;
 }
 .is-verse-vertical{
+  width: unset;
+  text-align: unset;
   top: 42vh;
   -webkit-writing-mode: vertical-rl;
   writing-mode: vertical-rl;
