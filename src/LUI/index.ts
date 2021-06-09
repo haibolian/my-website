@@ -9,6 +9,8 @@ import LCheckbox from './package/checkbox/checkbox.vue'
 import LCheckboxGroup from './package/checkbox/checkbox-group.vue'
 import LSelect from "./package/select/select.vue"
 import LOption from "./package/select/option.vue"
+import LTabs from "./package/tabs/tabs.vue"
+import LTabsPane from './package/tabs/tabs-pane.vue'
 let components = [
   LButton,
   LMenu,
@@ -20,7 +22,9 @@ let components = [
   LCheckbox,
   LCheckboxGroup,
   LSelect,
-  LOption
+  LOption,
+  LTabs,
+  LTabsPane
 ]
 
 const install = (Vue:any)=>{

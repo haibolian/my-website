@@ -1,0 +1,24 @@
+@import './variables.scss';
+
+.l-tabs{
+  font-size: 14px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px #ccc;
+  border-radius: $border-radius;
+  border: 1px solid #f7f7f7;
+}
+.l-tabs-main{ padding: 10px}
+.l-tabs-navbar{
+  background-color: #f7f7f7;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgb(238, 231, 231);
+  display: flex;
+  justify-content: flex-start;
+}
+.l-tabs-bar{
+  // display: inline-block;
+  box-sizing: border-box;
+  height: 42px;
+  line-height: 42px;
+  padding: 0 15px;
+}
