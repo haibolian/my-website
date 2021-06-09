@@ -7,7 +7,7 @@
         <color-name @hasGetColorName="hasGetColorName"></color-name>
       </div>
     </transition>
-    <l-button @click="revise">修改</l-button>
+    <i class="l-icon icon-setting waves-setting"></i>
     
   </div>
 </template>
@@ -76,7 +76,13 @@ export default {
   .fade-leave-to{
     opacity: 0;
   }
-
+}
+.waves-setting{
+  font-size: 25px;
+  color: rgb(214, 214, 214);
+  position: absolute;
+  bottom: 4vh;
+  left: 2vw;
 }
 </style>
 
