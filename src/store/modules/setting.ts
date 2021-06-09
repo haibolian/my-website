@@ -1,7 +1,8 @@
-import { writingMode } from '@/setting'
+import { verticalVerse,keepColorName } from '@/setting'
 
 const state = {
-  writingMode,
+  verticalVerse,
+  keepColorName,
 }
 const mutations = {
   changeSetting( state:any, { key, value } : { key:string, value: any }){

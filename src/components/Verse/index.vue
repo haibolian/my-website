@@ -16,7 +16,7 @@ import jinrishici from '@/utils/jinrishici'
 import { nextTick } from 'vue'
 export default {
   props:{
-    verseDrection: String
+    isVertical: Boolean
   },
   data(){
     return {
@@ -32,7 +32,7 @@ export default {
     verseClass(){
       return {
         'verse-container': true,
-        'is-verse-vertical': this.verseDrection == 'vertical'
+        'is-verse-vertical': this.isVertical
       }
     },
   },
@@ -41,7 +41,7 @@ export default {
       let { data, status } = await jinrishici()
       if(status){
         this.verseObj = data
-        this.verse = this.verseDrection == 'vertical' ? this.filterSign(data.content) : data.content
+        this.verse = this.isVertical ? this.filterSign(data.content) : data.content
         this.author = data.origin.author
         this.title = data.origin.title
       }
@@ -55,7 +55,7 @@ export default {
     this.getVerse()
   },
   watch:{
-    verseDrection(val){
+    isVertical(val){
       this.changeDirection = false
       nextTick(()=>{
         this.changeDirection = true

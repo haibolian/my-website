@@ -1,34 +1,44 @@
 <template>
   <div class="waves">
-    <iframe class="waves-iframe" src="./waves/index.html" frameborder="0"></iframe>
-    <verse :verseDrection="verseDrection"/>
+    <iframe class="waves-iframe" @click="handleClose" src="./waves/index.html" frameborder="0"></iframe>
+    <verse :isVertical="isVertical"/>
     <transition name="fade">
-      <div v-show="showColorName" class="colorName">
+      <div v-show="isKeepColorName || showColorName" class="colorName">
         <color-name @hasGetColorName="hasGetColorName"></color-name>
       </div>
     </transition>
-    <i class="l-icon icon-setting waves-setting"></i>
-    
+    <div class="waves-setting">
+      <i class="l-icon icon-setting" @click="clickSettingIcon" />
+      <transition name="slide-left-bottom">
+        <setting-panel v-if="showSettingPanel"/>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
 import Verse from '@/components/Verse/index'
 import ColorName from "@/components/ColorName"
+import { defineAsyncComponent } from 'vue'
 export default {
   components:{
     Verse,
-    ColorName
+    ColorName,
+    SettingPanel: defineAsyncComponent(()=>import('@/components/setting-panel/index'))
   },
   data(){
     return{
+      showSettingPanel:false,
       content: '',
       showColorName:true
     }
   },
   computed:{
-    verseDrection(){
-      return this.$store.state.setting.writingMode
+    isVertical(){
+      return this.$store.state.setting.verticalVerse
+    },
+    isKeepColorName(){
+      return this.$store.state.setting.keepColorName
     }
   },
   methods:{
@@ -40,11 +50,14 @@ export default {
     },
     finishWrite(){
       this.$emit('finishWrite')
-    },
+    },  
     hasGetColorName(){
       setTimeout(() => {
         this.showColorName = false
       }, 2500);
+    },
+    clickSettingIcon(){
+      this.showSettingPanel = !this.showSettingPanel
     }
   }
 }
@@ -78,11 +91,25 @@ export default {
   }
 }
 .waves-setting{
-  font-size: 25px;
-  color: rgb(214, 214, 214);
   position: absolute;
   bottom: 4vh;
   left: 2vw;
+  .l-icon{
+    cursor:pointer;
+    color: rgb(224, 224, 224);
+    font-size: 25px;
+  }
+}
+// 上拉，下拉
+.slide-left-bottom-enter-to, .slide-left-bottom-leave-from{
+  transition: transform .2s cubic-bezier(0.23, 0.8, 0.32, 1), opacity .2s cubic-bezier(0.23, 0.8, 0.32, 1);
+  transform-origin: left bottom;
+}
+.slide-left-bottom-enter-from, .slide-left-bottom-leave-to{
+  transition: transform .2s cubic-bezier(0.23, 0.8, 0.32, 1), opacity .2s cubic-bezier(0.23, 0.8, 0.32, 1);
+  transform-origin: left bottom;
+  opacity: 0;
+  transform: scaleX(0) scaleY(0);
 }
 </style>
 
