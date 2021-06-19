@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <waves v-if="showAnimation"></waves>
     <div v-else>
       <div id="nav">
@@ -16,7 +16,6 @@ import { defineAsyncComponent } from 'vue'
 export default {
   name:'APP',
   components:{
-    Sakura: defineAsyncComponent(()=>import('@/components/sakura/index')),
     Waves: defineAsyncComponent(()=>import('@/components/waves/index'))
   },
   data(){
