@@ -1,0 +1,16 @@
+@import './variables.scss';
+
+.l-card {
+  border-radius: $border-radius;
+  box-shadow: $box-shadow-shallow;
+}
+
+.l-card-header {
+  box-sizing: border-box;
+  border-bottom: 1px solid $border-color-second;
+  padding: 10px 20px;
+}
+
+.l-card-body {
+  padding: 18px 20px;
+}
