@@ -1,5 +1,5 @@
 <template>
-  <div class="l-card">
+  <div :class="['l-card', 'l-shadow-' + shadow]">
     <!-- header -->
     <div class="l-card-header" v-if="showHeader">
       <slot name="header" >
@@ -21,6 +21,10 @@ export default {
     title: {
       type: String,
       default: ''
+    },
+    shadow:{
+      type: String,
+      default: 'always'
     }
   },
   data(){

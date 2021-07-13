@@ -2,7 +2,7 @@
 
 .l-card {
   border-radius: $border-radius;
-  box-shadow: $box-shadow-shallow;
+  border: 1px solid $border-color-second;
 }
 
 .l-card-header {
