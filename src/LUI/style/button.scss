@@ -1,0 +1,61 @@
+@import './variables.scss';
+.l-button{
+  color: #fff;
+  box-sizing: border-box;
+  padding: 5px 15px;
+  font-size: 16px;
+  min-height: 40px;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: $color-main;
+  border: none;
+  outline: none;
+  & + .l-button {
+    margin-left: 10px;
+  }
+}
+
+// 主题颜色
+.l-button-primary{ background-color: $color-main; }
+.l-button-success{ background-color: $color-success; }
+.l-button-warning{ background-color: $color-warning; }
+.l-button-danger{ background-color: $color-danger; }
+// 动作
+.l-button:not(.is-disabled){
+  &:focus{
+    opacity: 0.8;
+  }
+  &:hover{
+    cursor: pointer;
+    opacity: 0.8;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    transition: all 0.4s;
+  }
+
+  &:active{
+    opacity: 1;
+  }
+}
+
+// 禁用
+.is-disabled{
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+// 尺寸
+.l-button-medium{
+  min-height: 36px;
+  font-size: 14px;
+}
+
+.l-button-small{
+  min-height: 32px;
+  font-size: 12px;
+}
+
+.l-button-mini{
+  min-height: 28px;
+  font-size: 12px;
+}
+

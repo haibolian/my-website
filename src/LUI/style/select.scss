@@ -43,7 +43,7 @@
       line-height: 34px;
       padding: 0 20px;
       &:hover{ background-color: $background-color-second; cursor: pointer;}
-      &.is-checked{ color: $mainColor; font-weight: bold ; }
+      &.is-checked{ color: $color-main; font-weight: bold ; }
       &.is-disabled { color: $text-disabled; cursor: not-allowed;
         &:hover{ background-color:unset; }
       }

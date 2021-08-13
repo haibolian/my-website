@@ -35,14 +35,14 @@ input[type=checkbox]{
 .l-checkbox.is-checked:not(.is-disabled) .l-checkbox-inner .l-checkbox-icon,
 .l-checkbox.is-indeterminate:not(.is-disabled) .l-checkbox-inner .l-checkbox-icon{
   color: #fff;
-  border-color: $mainColor;
-  background-color: $mainColor;
+  border-color: $color-main;
+  background-color: $color-main;
 }
 // .l-checkbox.is-indeterminate .l-checkbox-inner .l-checkbox-icon{
 //   font-size: 12px;
 // } 
 
-.is-all-dye.is-checked .l-checkbox-label{ color: $mainColor; }
+.is-all-dye.is-checked .l-checkbox-label{ color: $color-main; }
 
 // 禁用样式
 .l-checkbox.is-disabled{

@@ -5,7 +5,15 @@
     <h5>input</h5>
     <l-input v-model="testinput"></l-input>
     <h5>button</h5>
-    <l-button @click="handleBtnClick">按钮</l-button>
+    <l-button size="" @click="handleBtnClick">按钮</l-button>
+    <l-button size="medium" @click="handleBtnClick">按钮</l-button>
+    <l-button size="small" @click="handleBtnClick">按钮</l-button>
+    <l-button size="mini" @click="handleBtnClick">按钮</l-button>
+    <br>
+    <l-button size="" @click="handleBtnClick">按钮</l-button>
+    <l-button type="success" @click="handleBtnClick">按钮</l-button>
+    <l-button type="warning" @click="handleBtnClick">按钮</l-button>
+    <l-button type="danger" @click="handleBtnClick">按钮</l-button>
     <h5>card</h5>
     <l-card shadow="always">
       <template #header>

@@ -35,7 +35,7 @@
 // type为button的边框样式
 .l-radio-button{
   border: 1px solid $border-color-normal;
-  &.is-checked { border-color: $mainColor; background-color: $mainColor;color: #fff; }
+  &.is-checked { border-color: $color-main; background-color: $color-main;color: #fff; }
   border-right: none;
   &:last-child:not(.is-checked),&:last-child.is-disabled {
     border-right: 1px solid $border-color-normal;

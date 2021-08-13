@@ -8,6 +8,8 @@
 @import './tabs.scss';
 @import './card.scss';
 @import './shadow.scss';
+@import './button.scss';
+
 *{
   margin: 0;
   padding: 0;
@@ -15,7 +17,7 @@
 }
 
 .is-active{
-  background-color: $mainColor;
+  background-color: $color-main;
   color: #fff;
 }
 
