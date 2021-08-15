@@ -14,6 +14,14 @@
     <l-button type="success" @click="handleBtnClick">按钮</l-button>
     <l-button type="warning" @click="handleBtnClick">按钮</l-button>
     <l-button type="danger" @click="handleBtnClick">按钮</l-button>
+    <br>
+    <l-button plain size="" @click="handleBtnClick">按钮</l-button>
+    <l-button plain type="primary" @click="handleBtnClick">按钮</l-button>
+    <l-button plain type="success" @click="handleBtnClick">按钮</l-button>
+    <l-button plain type="warning" @click="handleBtnClick">按钮</l-button>
+    <l-button plain type="danger" @click="handleBtnClick">按钮</l-button>
+    <br>
+    <el-button>按钮</el-button>
     <h5>card</h5>
     <l-card shadow="always">
       <template #header>

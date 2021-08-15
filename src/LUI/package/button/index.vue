@@ -4,6 +4,7 @@
     :class="[
       type ? 'l-button-' + type : null,
       size ? 'l-button-' + size : null,
+      plain ? 'is-plain' : null,
       disabled ? 'is-disabled' : null
     ]"
     @click="click" 
@@ -25,9 +26,13 @@ export default {
       type: String,
       default: ''
     },
+    plain:{
+      type: Boolean,
+      default: false
+    },
     type:{
       type: String,
-      default: 'primary'
+      default: ''
     },
     disabled:{
       type: Boolean,
