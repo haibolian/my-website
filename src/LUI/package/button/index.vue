@@ -5,6 +5,7 @@
       type ? 'l-button-' + type : null,
       size ? 'l-button-' + size : null,
       plain ? 'is-plain' : null,
+      circle ? 'is-circle' : null,
       disabled ? 'is-disabled' : null
     ]"
     @click="click" 
@@ -27,6 +28,10 @@ export default {
       default: ''
     },
     plain:{
+      type: Boolean,
+      default: false
+    },
+    circle:{
       type: Boolean,
       default: false
     },
