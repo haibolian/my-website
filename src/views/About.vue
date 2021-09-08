@@ -1,6 +1,13 @@
 <template>
   <div class="about">
-    
+    <l-form :model='form' ref="form">
+      <l-form-item prop='username' label='账号'>
+        <l-input v-model="form.username"></l-input>
+      </l-form-item>
+      <l-form-item prop='password' label='密码'>
+        <l-input v-model="form.password"></l-input>
+      </l-form-item>
+    </l-form>
   </div>
 </template>
 
@@ -11,7 +18,10 @@ export default {
   name:'About',
   data(){
     return{
-      
+      form:{
+        username: '',
+        password: ''
+      }
     }
   },
   computed:{
