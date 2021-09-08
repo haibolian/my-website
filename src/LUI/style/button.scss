@@ -38,6 +38,10 @@
   & + .l-button {
     margin-left: 10px;
   }
+  &.is-circle{
+    border-radius: 50%;
+    padding: 11px;
+  }
 }
 
 // 主题颜色

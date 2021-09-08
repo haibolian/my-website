@@ -21,7 +21,9 @@
     <l-button plain type="warning" @click="handleBtnClick">按钮</l-button>
     <l-button plain type="danger" @click="handleBtnClick">按钮</l-button>
     <br>
-    <el-button>按钮</el-button>
+    <l-button circle class="el-icon-search"></l-button>
+    <el-button size="small" circle class="el-icon-search"></el-button>
+    <el-button size="mini" circle class="el-icon-search"></el-button>
     <h5>card</h5>
     <l-card shadow="always">
       <template #header>
