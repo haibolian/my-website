@@ -46,6 +46,7 @@ import { controllers,controlleds,mutations } from './store'
   export default {
     name:'LCheckbox',
     componentName:'LCheckbox',
+    emits:['update:modelValue'],
     props:{
       modelValue:[String,Number,Boolean,Array],
       checked:Boolean,

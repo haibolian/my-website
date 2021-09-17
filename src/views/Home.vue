@@ -34,6 +34,25 @@
         {{'列表内容 ' + o }}
       </div>
   </l-card>
+  <h5>checkbox</h5>
+  <l-checkbox-group v-model="arr">
+    <l-checkbox label='水果' value="rfsdnf"></l-checkbox>
+    <l-checkbox label='香蕉' value="arfsdnf"></l-checkbox>
+    <l-checkbox label='例子' value="r3fsdnf"></l-checkbox>
+  </l-checkbox-group>
+  <h5>radio</h5>
+  <l-radio-group v-model="radio">
+    <l-radio label="选项1" value="1"></l-radio>
+    <l-radio label="选项2" value="2"></l-radio>
+    <l-radio label="选项3" value="3"></l-radio>
+  </l-radio-group>
+  <h5>select</h5>
+  <l-select v-model="select">
+    <l-option value='11' label='黄金'></l-option>
+    <l-option value='12' label='玉米'></l-option>
+    <l-option value='13' label='高点'></l-option>
+  </l-select>
+  <h5></h5>
   </div>
 </template>
 
@@ -45,7 +64,10 @@
     },
     data() {
       return {
-        testinput:''
+        testinput:'',
+        arr:[],
+        radio:'',
+        select:''
       }
     },
     methods:{
