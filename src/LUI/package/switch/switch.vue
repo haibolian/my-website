@@ -1,6 +1,6 @@
 <template>
   <div
-  :class="['l-switch', toggleClass]" 
+  :class="['l-switch', size ? `l-switch--${size}` : '' ,toggleClass]" 
   @click="handleClick">
     <div class="l-switch-inner">
 
@@ -13,7 +13,8 @@ export default {
   name:'LSwitch',
   props: {
     modelValue: Boolean,
-    disabled: Boolean
+    disabled: Boolean,
+    size: String
   },
   emits:['update:modelValue','change'],
   setup(props, ctx){
@@ -39,33 +40,3 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.l-switch {
-  width: 50px;
-  height: 18px;
-  padding: 5px;
-  border-radius: 30px;
-  cursor: pointer;
-  position: relative;
-  .l-switch-inner {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    position: absolute;
-    background-color: #fff;
-  }
-  &.l-switch-on {
-    background-color: rgb(52, 81, 248);
-    .l-switch-inner { right: 5px; }
-  }
-
-  &.l-switch-off {
-    background-color: #ddd;
-    .l-switch-inner { left: 5px; }
-  }
-
-  &.is-disabled {
-    cursor: not-allowed;
-  }
-}
-</style>

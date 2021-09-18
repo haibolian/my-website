@@ -1,7 +1,11 @@
 <template>
   <div class="about">
     <el-switch v-model="toggle"></el-switch>
-    <l-switch disabled v-model="toggle"></l-switch>
+    <el-switch v-model="toggle"></el-switch>
+    <l-switch v-model="toggle"></l-switch>
+    <l-switch size='small' v-model="toggle"></l-switch>
+    <l-switch size="medium" v-model="toggle"></l-switch>
+    <l-switch size="mini" v-model="toggle"></l-switch>
     <!-- <l-form :model='form' ref="form">
       <l-form-item prop='username' label='账号'>
         <l-input v-model="form.username"></l-input>
