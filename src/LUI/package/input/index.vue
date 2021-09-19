@@ -6,7 +6,7 @@
           $slots.append || append ? 'l-input-group-append' : ''
           ]"
       :style="`width:${width}`">
-      <div v-if="$slots.prepend || prepend" class="l-input-prepend">
+      <div v-if="$slots.prepend || prepend" class="l-input-prepend" @click="clickPrepend">
         <slot name="prepend">{{ prepend }}</slot>
       </div>
     <input
@@ -23,7 +23,7 @@
       @blur="handleBlur"
       @focus="handleFocus"
       >
-      <div v-if="$slots.append || append" class="l-input-append">
+      <div v-if="$slots.append || append" class="l-input-append" @click="clickAppend">
         <slot name="append">{{ append }}</slot>
       </div>
       <span v-if="prefixIcon || $slots.prefix" ref="l-icon-prefix-box" class="l-icon-prefix-box">
@@ -44,9 +44,9 @@
 export default {
   inheritAttrs:false,
   name:'LInput',
-  emits:[ 'clear','clickPrefixIcon','clickSuffixIcon','input','change','blur','focus' ],
+  emits:[ 'clear','clickPrefixIcon','clickSuffixIcon','input','change','blur','focus', 'click-prepend', 'click-append' ],
   props:{
-    modelValue:[String],
+    modelValue:[String,Number],
     type: {
       type:String, 
       default: 'text',
@@ -142,6 +142,12 @@ export default {
       this.pswIconValue = !this.pswIconValue
       this.showType = this.pswIconValue ? 'text' : 'password'
     },
+    clickPrepend(ev){
+      this.$emit('click-prepend',ev)
+    },
+    clickAppend(ev){
+      this.$emit('click-append',ev)
+    }
   }
 }
 </script>

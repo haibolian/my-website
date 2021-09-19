@@ -1,11 +1,21 @@
 <template>
   <div class="about">
-    <el-switch v-model="toggle"></el-switch>
-    <el-switch v-model="toggle"></el-switch>
-    <l-switch v-model="toggle"></l-switch>
-    <l-switch size='small' v-model="toggle"></l-switch>
-    <l-switch size="medium" v-model="toggle"></l-switch>
-    <l-switch size="mini" v-model="toggle"></l-switch>
+    <l-counter :min="33" :step='3' @change="change" v-model="num"></l-counter>
+    <!-- <el-input-number :min="33" :step='3' @change="change" v-model="num" /> -->
+    <!-- <l-input v-model="num" @blur="handleBlur"></l-input> -->
+    {{num}}
+    <!-- <el-input v-model="num" placeholder="">
+      <template v-slot:prepend>
+        asdasd
+      </template>
+    </el-input> -->
+      <!-- <el-input-number
+    v-model="num"
+    @change="change"
+    :max="10"
+    :min="11"
+    label="描述文字"
+  ></el-input-number> -->
     <!-- <l-form :model='form' ref="form">
       <l-form-item prop='username' label='账号'>
         <l-input v-model="form.username"></l-input>
@@ -28,7 +38,7 @@ export default {
         username: '',
         password: ''
       },
-      toggle: true
+      num: 44,
     }
   },
   computed:{
@@ -39,6 +49,12 @@ export default {
       getSentence(res=>{
         
       })
+    },
+    change(eee){
+      console.log('change 了',eee);
+    },
+    handleBlur(ev){
+      this.num = parseInt(ev.target.value)
     }
   },
   mounted(){
@@ -46,20 +62,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.l-input{
-  display: inline-block;
-  margin: 20px;
-}
-canvas {
-  padding: 0;
-  margin: 0;
-}
-
-div.btnbg {
-  position: fixed;
-  left: 0;
-  top: 0;
-}
-</style>

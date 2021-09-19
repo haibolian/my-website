@@ -1,0 +1,13 @@
+.l-counter {
+  display: flex;
+  width: 180px;
+  .l-input-inner {
+    text-align: center;
+  }
+}
+
+.l-counter--decrease, .l-counter--increase {
+  background-color: #ccc;
+  padding: 5px;
+  text-align: center;
+}
