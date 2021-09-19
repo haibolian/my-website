@@ -71,7 +71,6 @@ export default {
     const setCurrentValue = (value)=>{
       count.value = value
       ctx.emit('update:modelValue', value)
-      ctx.emit('change', value)
     }
 
     const handleBlur = ev =>{
@@ -93,6 +92,7 @@ export default {
       ()=>props.modelValue,
       value=>{
         defaultSetCurrentValue(value)
+        ctx.emit('change', value)
       },
       { immediate: true }
     )
