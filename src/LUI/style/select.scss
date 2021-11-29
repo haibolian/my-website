@@ -3,7 +3,11 @@
   display: inline-block;
   position: relative;
 }
-.l-select,.l-select .l-select-inner:not(.is-disabled) .l-input-inner,.l-select  .l-select-inner:not(.is-disabled) .l-icon-suffix-box .l-icon.l-icon-readonly{ cursor: pointer; }
+.l-select,
+.l-select .l-select-inner:not(.is-disabled) .l-input-inner,
+.l-select .l-select-inner:not(.is-disabled) .l-icon-suffix-box .l-icon.l-icon-readonly { 
+  cursor: pointer; 
+}
 .l-select .l-select-inner{
   height: 32px;
   box-sizing: border-box;

@@ -3,15 +3,16 @@
           'l-input',
           size ? 'l-input-' + size : '',
           disabled ? 'is-disabled':'',
-          $slots.append || append ? 'l-input-group-append' : ''
-          ]"
+          $slots.append || append ? 'l-input-group-append' : '',
+          $attrs.class
+        ]"
       :style="`width:${width}`">
-      <div v-if="$slots.prepend || prepend" class="l-input-prepend" @click="clickPrepend">
-        <slot name="prepend">{{ prepend }}</slot>
-      </div>
+    <div v-if="$slots.prepend || prepend" class="l-input-prepend" @click="clickPrepend">
+      <slot name="prepend">{{ prepend }}</slot>
+    </div>
     <input
       ref="l-input-inner"
-      v-bind="$attrs"
+      v-bind="Object.assign({}, $attrs, { class: '' })"
       class="l-input-inner"
       :disabled="disabled"
       :value="modelValue"
