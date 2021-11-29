@@ -20,6 +20,7 @@
       disabled: Boolean,
       nodata: Boolean
     },
+    emits:['update:modelValue'],
     data() {
       return {};
     },
