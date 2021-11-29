@@ -1,0 +1,14 @@
+@import './variables.scss';
+
+.l-pagination_rightWrapper {
+  float: right;
+}
+
+.l-pagination_sizes {
+  .l-select {
+    width: 100px;
+    .l-select-inner {
+      text-align: center;
+    }
+  }
+}

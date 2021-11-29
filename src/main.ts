@@ -5,6 +5,7 @@ import store from './store'
 // element-plus
 import ElementUI from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 // LUI
 import LUI from './LUI/index'
@@ -23,5 +24,5 @@ const app = createApp(App)
 
 app.use(globalComponent)
 app.use(LUI)
-app.use(ElementUI)
+app.use(ElementUI, {locale: zhCn})
 app.use(store).use(router).mount('#app')
