@@ -1,6 +1,6 @@
 <template>
   <span class="l-pagination_total">
-    共 {{ total }} 页
+    共 {{ total }} 条
   </span>
 </template>
 
