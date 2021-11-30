@@ -1,5 +1,6 @@
 <script>
 import { defineComponent, ref, toRefs, computed, h, provide} from 'vue'
+import { isOddNumber } from  '../../src/utils/math'
 import Total from './total.vue'
 import Sizes from './sizes.vue'
 import Prev from './prev.vue'
@@ -19,8 +20,7 @@ export default defineComponent({
   },
   props:{
     total: {
-      type: Number,
-      default: 100
+      type: Number
     },
     pageSize: {
       type: Number,
@@ -36,6 +36,16 @@ export default defineComponent({
       type: Number,
       default: 1
     },
+    pageCount: {
+      type: Number
+    },
+    maxShowCount: {
+      type: Number,
+      default: 7,
+      validator(val){
+        return val >= 5 && val <= 21 && isOddNumber(val)
+      }
+    },
     layout: {
       type: String,
       default: 'prev, pager, next, jumper'
@@ -43,22 +53,31 @@ export default defineComponent({
   },
 
   setup(props, { emit }){
-    // layout-arr
-    const layoutArr = computed(()=>{
-      return props.layout.split(',').map(item => item.trim())
-    })
-
+    
+    // define internal-currentPage
+    const { currentPage, total, pageSize, pageCount }  = props
+    const internalCurrentPage = ref(currentPage) 
+    const internalPageCount = ref(total ? Math.ceil(total / pageSize) : (pageCount ?? 0))
 
     // provide - changePageSize
     const changePageSize = (val)=>{
-      emit('changePageSize', val)
+      emit('size-change', val)
       emit('update:pageSize', val)
     }
-    provide('changePageSize', changePageSize)
+    // provide - changeCurrentPage
+    const changePage = (val)=>{
+      emit('page-change', val)
+      emit('update:currentPage', val)
+    }
 
+    provide('changePageSize', changePageSize)
+    provide('changePage', changePage)
+    provide('hasTotal', props.hasOwnProperty('total'))
+    provide('hasPageCount', props.hasOwnProperty('pageCount'))
 
     return {
-      layoutArr
+      internalCurrentPage,
+      internalPageCount
     }
   },
 
@@ -68,16 +87,18 @@ export default defineComponent({
     const rightWrapperChildrenNodes = []
     const TEMPLATE_MAP = {
       total: h(Total, {
-        total: this.total
+        total:  this.total || 0
       }),
       sizes: h(Sizes,{
-        sizes: this.sizes,
         pageSize: this.pageSize,
         pageSizes: this.pageSizes
       }),
       pager: h(Pager,{
-        total: this.total,
-        size: this.size,
+        currentPage: this.internalCurrentPage,
+        'onUpdate:currentPage': val => this.internalCurrentPage = val,
+        size: this.pageSize,
+        pageCount: this.internalPageCount,
+        maxShowCount: this.maxShowCount,
       }),
       prev: h(Prev),
       next: h(Next),
