@@ -32,7 +32,7 @@ export default defineComponent({
     // changePageSize
     const cps = inject('changePageSize')
     const changePageSize = (s)=>{
-      cps(s)
+      cps && cps(s)
     }
     return {
       size,
