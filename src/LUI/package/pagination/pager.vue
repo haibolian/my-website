@@ -1,6 +1,6 @@
 <template>
   <ul class="l-pagination_pager">
-    <li class="pager-number" v-if="pageCount > 0"
+    <li class="pager-number" :class="{ 'is-current_page': currentPage === 1 }" v-if="pageCount > 0"
       @click="clickPage(1)"
     >
       1
@@ -12,6 +12,7 @@
 
     <li
       class="pager-number"
+      :class="{ 'is-current_page': currentPage === page }"
       v-for="page in pages" 
       :key="page"
       @click="clickPage(page)"
@@ -21,7 +22,7 @@
     
     <li class="pager-next" v-if="showNextMore" @click="clickNextMore"> {{ '>>' }} </li>
 
-    <li class="pager-number" v-if="pageCount > 1" @click="clickPage(pageCount)">
+    <li class="pager-number"  :class="{ 'is-current_page': currentPage === pageCount }" v-if="pageCount > 1" @click="clickPage(pageCount)">
       {{ pageCount }}
     </li>
   </ul>
@@ -83,22 +84,31 @@ export default defineComponent({
       return arr
     })
 
-    const clickPage = page=>{
+
+    //emit event
+    const rootEmitPageChange = inject('changePage')
+    const emitPageChange = (page)=> {
       ctx.emit('update:currentPage', page)
+      rootEmitPageChange && rootEmitPageChange(page)
     }
 
+    const clickPage = page=>{
+      if(page === props.currentPage) return
+      emitPageChange(page)
+    }
     const clickPrevMore = ()=>{
       const { currentPage, maxShowCount, pageCount } = props
       let page = currentPage - (maxShowCount - 2)
       if(page < 1) page = 1
-      ctx.emit('update:currentPage', page)
+      emitPageChange(page)
     }
     const clickNextMore = ()=>{
       const { currentPage, maxShowCount, pageCount } = props
       let page = currentPage + (maxShowCount - 2)
       if(page > pageCount) page = pageCount
-      ctx.emit('update:currentPage', page)
+      emitPageChange(page)
     }
+
     return {
       pages,
       showPrevMore,
