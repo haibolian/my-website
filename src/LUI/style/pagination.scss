@@ -1,14 +1,80 @@
 @import './variables.scss';
 
+.l-pagination {
+  font-size: 13px;
+}
+
+.is-current_page {
+  color: $border-color-active;
+}
+
+.l-pagination_pager,
+.l-pagination_prev,
+.l-pagination_next,
+.l-pagination_total,
+.l-pagination_jumper{
+  height: 28px;
+  display: inline-block;
+  line-height: 28px;
+  margin: 0 8px;
+}
+
+.l-pagination:first-child {
+  margin-left: 0;
+}
+
+
 .l-pagination_rightWrapper {
   float: right;
 }
 
+// sizes
 .l-pagination_sizes {
   .l-select {
     width: 100px;
+    display: inline-block;
     .l-select-inner {
       text-align: center;
     }
+    .l-input-inner {
+      height: 28px;
+    }
   }
+}
+
+// pager
+.l-pagination_pager {
+  display: inline-block;
+  font-weight: 500;
+  .pager-number,
+  .pager-prev,
+  .pager-next {
+    width: 36px;
+    height: 100%;
+    text-align: center;
+    display: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    user-select: none;
+    &:hover {
+      color: $border-color-active;
+    }
+    &.is-current_page {
+      cursor: unset;
+    }
+  }
+  
+}
+
+
+// prev
+.l-pagination_prev {
+  .l-icon.icon-arrow-right {
+    transform: rotate(180deg);
+    display: inline-block;
+  }
+}
+
+.l-pagination_prev, .l-pagination_next {
+  font-weight: bold;
 }
