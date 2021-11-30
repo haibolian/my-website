@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <span class="l-pagination_jumper">
     jumper
   </span>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <span>
-    next
+  <span class="l-pagination_next">
+    <i class="l-icon icon-arrow-right"></i>
   </span>
 </template>
 

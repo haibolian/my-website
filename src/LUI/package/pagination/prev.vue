@@ -1,6 +1,6 @@
 <template>
-  <span class="l-prev">
-    prev
+  <span class="l-pagination_prev">
+    <i class="l-icon icon-arrow-right"></i>
   </span>
 </template>
 
@@ -16,7 +16,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang='scss' scoped>
-
-</style>

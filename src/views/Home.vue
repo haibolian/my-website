@@ -56,18 +56,19 @@
   <el-pagination
     :page-sizes="[100, 200, 300, 400, 500]"
     :page-size="pageSize"
-    layout="prev, pager, ->, total, sizes, next, jumper, slot"
-    :total="400"
+    :total="4000"
+    layout="prev, pager,next, total, sizes, jumper, slot"
   >
-  haiyouzhe?
   </el-pagination>
   <h5>分页-LUI</h5>
   <l-pagination
     layout="total, sizes, prev, pager, next, jumper, slot"
     :page-sizes="[100, 200, 300, 400, 500]"
-    :pageSize="pageSize"
-    :currentPage="1"
-    :total='100'
+    :page-size="pageSize"
+    :page-count="20"
+    :currentPage="4"
+    @size-change="changePageSize"
+    @page-change="changePage"
   >
   </l-pagination>
   
@@ -93,6 +94,12 @@
     methods:{
       handleBtnClick(e){
         console.log(e);
+      },
+      changePageSize(val){
+        console.log('changePageSize', val);
+      },
+      changePage(val){
+        console.log('changePage', val);
       }
     }
   }
