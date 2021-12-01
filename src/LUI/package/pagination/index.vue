@@ -70,6 +70,17 @@ export default defineComponent({
       emit('update:currentPage', val)
     }
 
+    const prev = ()=>{
+      if(internalCurrentPage.value <= 1) return
+      internalCurrentPage.value = internalCurrentPage.value - 1
+      emit('prev-click', internalCurrentPage.value)
+    }
+    const next = ()=>{
+      if(internalCurrentPage.value >= internalPageCount.value) return
+      internalCurrentPage.value = internalCurrentPage.value + 1
+      emit('next-click', internalCurrentPage.value)
+    }
+
     provide('changePageSize', changePageSize)
     provide('changePage', changePage)
     provide('hasTotal', props.hasOwnProperty('total'))
@@ -77,7 +88,9 @@ export default defineComponent({
 
     return {
       internalCurrentPage,
-      internalPageCount
+      internalPageCount,
+      prev,
+      next
     }
   },
 
@@ -100,8 +113,15 @@ export default defineComponent({
         pageCount: this.internalPageCount,
         maxShowCount: this.maxShowCount,
       }),
-      prev: h(Prev),
-      next: h(Next),
+      prev: h(Prev, {
+        currentPage: this.internalCurrentPage,
+        onClick: this.prev
+      }),
+      next: h(Next, {
+        currentPage: this.internalCurrentPage,
+        pageCount: this.internalPageCount,
+        onClick: this.next
+      }),
       jumper: h(Jumper),
       slot: this.$slots?.default?.() ?? null
     }
