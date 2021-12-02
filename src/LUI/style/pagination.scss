@@ -12,7 +12,8 @@
 .l-pagination_prev,
 .l-pagination_next,
 .l-pagination_total,
-.l-pagination_jumper{
+.l-pagination_sizes,
+.l-pagination_jumper {
   height: 28px;
   display: inline-block;
   line-height: 28px;
@@ -36,7 +37,7 @@
     .l-select-inner {
       text-align: center;
     }
-    .l-input-inner {
+    .l-input_inner {
       height: 28px;
     }
   }
@@ -46,10 +47,11 @@
 .l-pagination_pager {
   display: inline-block;
   font-weight: 500;
+  margin: 0;
   .pager-number,
   .pager-prev,
   .pager-next {
-    width: 36px;
+    width: 30px;
     height: 100%;
     text-align: center;
     display: inherit;
@@ -63,7 +65,19 @@
       cursor: unset;
     }
   }
-  
+}
+
+// pager -> background
+.is-background {
+  .pager-number.is-current_page {
+    color: #fff;
+    background-color: $border-color-active;
+  }
+  .pager-next,.pager-number,.pager-prev,.l-pagination_prev,.l-pagination_next{
+    background-color: rgb(245, 245, 245);
+    margin: 0 4px;
+    border-radius: 2px;
+  }
 }
 
 
@@ -76,5 +90,28 @@
 }
 
 .l-pagination_prev, .l-pagination_next {
+  text-align: center;
+  width: 30px;
   font-weight: bold;
+  &:not(.is-disabled) {
+    cursor: pointer;
+  }
+}
+
+// jumper
+.l-pagination_jumper {
+  .l-input {
+    display: inline-block;
+    width: 50px;
+    .l-input_inner {
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+    }
+  }
+}
+
+// icon
+.l-pagination_prev, .l-pagination_next, .pager-prev, .pager-next {
+  font-size: 12px;
 }
