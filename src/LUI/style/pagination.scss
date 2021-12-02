@@ -83,19 +83,17 @@
 
 // prev
 .l-pagination_prev {
-  .l-icon.icon-arrow-right {
-    transform: rotate(180deg);
-    display: inline-block;
-  }
+  transform: rotate(180deg);
+  display: inline-block;
 }
 
 .l-pagination_prev, .l-pagination_next {
   text-align: center;
   width: 30px;
   font-weight: bold;
-  &:not(.is-disabled) {
-    cursor: pointer;
-  }
+  // &:not(.is-disabled) {
+  //   cursor: pointer;
+  // }
 }
 
 // jumper
@@ -114,4 +112,12 @@
 // icon
 .l-pagination_prev, .l-pagination_next, .pager-prev, .pager-next {
   font-size: 12px;
+}
+
+// disabled
+.l-pagination.is-disabled .pager-btn{
+  &:not(.is-current_page):hover {
+    color: unset;
+  }
+  cursor: not-allowed;
 }

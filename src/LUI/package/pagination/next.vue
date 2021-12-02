@@ -1,6 +1,5 @@
 <template>
-  <span class="l-pagination_next" :class="{ 'is-disabled': isDisabled }">
-    <i class="l-icon icon-arrow-right"></i>
+  <span class="l-pagination_next l-icon icon-arrow-right pager-btn">
   </span>
 </template>
 
@@ -9,21 +8,10 @@ import { defineComponent, onBeforeMount, computed, onMounted, ref, inject } from
 export default defineComponent({
   name:'Next',
   props:{
-    currentPage: {
-      type: Number
-    },
-    pageCount: {
-      type: Number
-    }
+    
   },
   setup(props, ctx){
-    const isDisabled = computed(()=>{
-      return props.currentPage >= props.pageCount
-    })
-
-    return {
-      isDisabled
-    }
+    
   }
 })
 </script>

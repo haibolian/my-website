@@ -1,17 +1,26 @@
 <template>
   <ul class="l-pagination_pager">
-    <li class="pager-number" :class="{ 'is-current_page': currentPage === 1 }" v-if="pageCount > 0"
+    <li 
+      class="pager-number pager-btn" 
+      :class="{ 'is-current_page': currentPage === 1 }" 
+      v-if="pageCount > 0"
       @click="clickPage(1)"
     >
       1
     </li>
 
-    <li class="pager-prev" v-if="showPrevMore" @click="clickPrevMore">
-      {{'<<'}}
+    <li
+      class="pager-prev pager-btn"
+      :class="['l-icon', isHoverOnPrev ? 'icon-arrow-double-left' : 'icon-elipsis']"
+      @mouseover="disabled ? null : isHoverOnPrev = true"
+      @mouseleave="disabled ? null : isHoverOnPrev = false"
+      v-if="showPrevMore"
+      @click="clickPrevMore" 
+    >
     </li>
 
     <li
-      class="pager-number"
+      class="pager-number pager-btn"
       :class="{ 'is-current_page': currentPage === page }"
       v-for="page in pages" 
       :key="page"
@@ -19,10 +28,22 @@
     >
       {{ page }}
     </li>
-    
-    <li class="pager-next" v-if="showNextMore" @click="clickNextMore"> {{ '>>' }} </li>
+      
+    <li
+      class="pager-next pager-btn"
+      :class="['l-icon', isHoverOnNext ? ' icon-arrow-double-right' : 'icon-elipsis']"
+      @mouseover="disabled ? null : isHoverOnNext = true"
+      @mouseleave="idisabled ? null : sHoverOnNext = false"
+      v-if="showNextMore" 
+      @click="clickNextMore"
+    >   
+    </li>
 
-    <li class="pager-number"  :class="{ 'is-current_page': currentPage === pageCount }" v-if="pageCount > 1" @click="clickPage(pageCount)">
+    <li 
+      class="pager-number pager-btn"  
+      :class="{ 'is-current_page': currentPage === pageCount }" 
+      v-if="pageCount > 1" 
+      @click="clickPage(pageCount)">
       {{ pageCount }}
     </li>
   </ul>
@@ -40,6 +61,7 @@ import {
 export default defineComponent({
   name:'Pager',
   components:{},
+  emits:['update:currentPage'],
   props:{
     size: {
       type: Number
@@ -52,8 +74,11 @@ export default defineComponent({
     },
     maxShowCount: {
       type: Number
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     }
-
   },
   setup(props, ctx){
     const showPrevMore = ref(false)
@@ -93,17 +118,20 @@ export default defineComponent({
     }
 
     const clickPage = page=>{
-      if(page === props.currentPage) return
+      const { disabled, currentPage } = props
+      if(disabled || page === currentPage) return
       emitPageChange(page)
     }
     const clickPrevMore = ()=>{
-      const { currentPage, maxShowCount, pageCount } = props
+      const { currentPage, maxShowCount, pageCount, disabled } = props
+      if(disabled) return
       let page = currentPage - (maxShowCount - 2)
       if(page < 1) page = 1
       emitPageChange(page)
     }
     const clickNextMore = ()=>{
-      const { currentPage, maxShowCount, pageCount } = props
+      const { currentPage, maxShowCount, pageCount, disabled } = props
+      if(disabled) return
       let page = currentPage + (maxShowCount - 2)
       if(page > pageCount) page = pageCount
       emitPageChange(page)
@@ -115,7 +143,9 @@ export default defineComponent({
       showNextMore,
       clickPage,
       clickPrevMore,
-      clickNextMore
+      clickNextMore,
+      isHoverOnPrev: ref(false),
+      isHoverOnNext: ref(false),
     }
   }
 })

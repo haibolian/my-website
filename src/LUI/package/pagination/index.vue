@@ -10,6 +10,7 @@ import Jumper from './jumper.vue'
 export default defineComponent({
   name: 'LPagination',
   componentName: 'LPagination',
+  emits:['size-change', 'page-change',  'prev-click', 'next-click', 'update:pageSize', 'update:currentPage',],
   components:{
     Total,
     Sizes,
@@ -49,6 +50,14 @@ export default defineComponent({
     layout: {
       type: String,
       default: 'prev, pager, next, jumper'
+    },
+    background: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -71,12 +80,12 @@ export default defineComponent({
     }
 
     const prev = ()=>{
-      if(internalCurrentPage.value <= 1) return
+      if( props.disabled || internalCurrentPage.value <= 1) return
       internalCurrentPage.value = internalCurrentPage.value - 1
       emit('prev-click', internalCurrentPage.value)
     }
     const next = ()=>{
-      if(internalCurrentPage.value >= internalPageCount.value) return
+      if(props.disabled || internalCurrentPage.value >= internalPageCount.value) return
       internalCurrentPage.value = internalCurrentPage.value + 1
       emit('next-click', internalCurrentPage.value)
     }
@@ -103,6 +112,7 @@ export default defineComponent({
         total:  this.total || 0
       }),
       sizes: h(Sizes,{
+        disabled: this.disabled,
         pageSize: this.pageSize,
         pageSizes: this.pageSizes
       }),
@@ -110,19 +120,27 @@ export default defineComponent({
         currentPage: this.internalCurrentPage,
         'onUpdate:currentPage': val => this.internalCurrentPage = val,
         size: this.pageSize,
+        disabled: this.disabled,
         pageCount: this.internalPageCount,
         maxShowCount: this.maxShowCount,
       }),
       prev: h(Prev, {
+        disabled: this.disabled,
         currentPage: this.internalCurrentPage,
         onClick: this.prev
       }),
       next: h(Next, {
+        disabled: this.disabled,
         currentPage: this.internalCurrentPage,
         pageCount: this.internalPageCount,
         onClick: this.next
       }),
-      jumper: h(Jumper),
+      jumper: h(Jumper, {
+        disabled: this.disabled,
+        currentPage: this.internalCurrentPage,
+        pageCount: this.internalPageCount,
+        'onUpdate:currentPage': val => this.internalCurrentPage = val,
+      }),
       slot: this.$slots?.default?.() ?? null
     }
 
@@ -139,10 +157,12 @@ export default defineComponent({
       }
     });
     const rightWrapperNode = h('span', { class: 'l-pagination_rightWapper' }, rightWrapperChildrenNodes)
-    return h('div', { class: 'l-pagination' }, [...childrenNodes, rightWrapperNode])
+    const rootClass = {
+      'l-pagination': true,
+      'is-background': this.background,
+      'is-disabled': this.disabled
+    }
+    return h('div', {class: rootClass} , [...childrenNodes, rightWrapperNode])
   }
-
-
-  
 })
 </script>

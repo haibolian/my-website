@@ -1,6 +1,6 @@
 <template>
   <span class="l-pagination_sizes">
-    <l-select v-model="size" @change="changePageSize">
+    <l-select :disabled="disabled" v-model="size" @change="changePageSize">
       <l-option 
         v-for="s in pageSizes" 
         :key="s"
@@ -24,6 +24,10 @@ export default defineComponent({
     },
     pageSize: {
       type: Number
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, ctx){
