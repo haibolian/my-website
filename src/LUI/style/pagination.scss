@@ -91,9 +91,9 @@
   text-align: center;
   width: 30px;
   font-weight: bold;
-  // &:not(.is-disabled) {
-  //   cursor: pointer;
-  // }
+  &:not(.is-disabled) {
+    cursor: pointer;
+  }
 }
 
 // jumper
