@@ -1,5 +1,5 @@
 <template>
-  <span class="l-pagination_next l-icon icon-arrow-right pager-btn">
+  <span class="l-pagination_next l-icon icon-arrow-right pager-btn" :class="{ 'is-disabled': disabled }">
   </span>
 </template>
 
@@ -8,7 +8,9 @@ import { defineComponent, onBeforeMount, computed, onMounted, ref, inject } from
 export default defineComponent({
   name:'Next',
   props:{
-    
+    disabled: {
+      type: Boolean
+    }
   },
   setup(props, ctx){
     

@@ -66,15 +66,24 @@ export default defineComponent({
     // define internal-currentPage
     const { currentPage, total, pageSize, pageCount }  = props
     const internalCurrentPage = ref(currentPage) 
-    const internalPageCount = ref(total ? Math.ceil(total / pageSize) : (pageCount ?? 0))
+    const internalPageSize = ref(pageSize)
+
+    const internalPageCount = computed(()=>{
+      const result = total ? Math.ceil(total / internalPageSize.value) : (pageCount ?? 0)
+      if(internalCurrentPage.value > result) changePage(result)
+      return result
+    })
 
     // provide - changePageSize
     const changePageSize = (val)=>{
+      internalPageSize.value = val
+      
       emit('size-change', val)
       emit('update:pageSize', val)
     }
     // provide - changeCurrentPage
     const changePage = (val)=>{
+      internalCurrentPage.value = val
       emit('page-change', val)
       emit('update:currentPage', val)
     }
@@ -85,12 +94,12 @@ export default defineComponent({
       emit('prev-click', internalCurrentPage.value)
     }
     const next = ()=>{
-      if(props.disabled || internalCurrentPage.value >= internalPageCount.value) return
+      if(props.disabled || internalCurrentPage.value >= internalPageCount) return
       internalCurrentPage.value = internalCurrentPage.value + 1
       emit('next-click', internalCurrentPage.value)
     }
 
-    provide('changePageSize', changePageSize)
+    // provide('changePageSize', changePageSize)
     provide('changePage', changePage)
     provide('hasTotal', props.hasOwnProperty('total'))
     provide('hasPageCount', props.hasOwnProperty('pageCount'))
@@ -98,8 +107,10 @@ export default defineComponent({
     return {
       internalCurrentPage,
       internalPageCount,
+      internalPageSize,
       prev,
-      next
+      next,
+      changePageSize
     }
   },
 
@@ -113,24 +124,25 @@ export default defineComponent({
       }),
       sizes: h(Sizes,{
         disabled: this.disabled,
-        pageSize: this.pageSize,
-        pageSizes: this.pageSizes
+        pageSize: this.internalPageSize,
+        pageSizes: this.pageSizes,
+        onChangePageSize: this.changePageSize
       }),
       pager: h(Pager,{
         currentPage: this.internalCurrentPage,
         'onUpdate:currentPage': val => this.internalCurrentPage = val,
-        size: this.pageSize,
+        size: this.internalPageSize,
         disabled: this.disabled,
         pageCount: this.internalPageCount,
         maxShowCount: this.maxShowCount,
       }),
       prev: h(Prev, {
-        disabled: this.disabled,
+        disabled: this.disabled || this.internalCurrentPage <= 1,
         currentPage: this.internalCurrentPage,
         onClick: this.prev
       }),
       next: h(Next, {
-        disabled: this.disabled,
+        disabled: this.disabled || this.internalCurrentPage >= this.internalPageCount,
         currentPage: this.internalCurrentPage,
         pageCount: this.internalPageCount,
         onClick: this.next

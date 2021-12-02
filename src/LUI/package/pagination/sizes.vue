@@ -15,6 +15,7 @@
 import { defineComponent, onBeforeMount, onMounted, ref, inject } from 'vue'
 export default defineComponent({
   name:'Sizes',
+  emits:['changePageSize'],
   components:{
     
   },
@@ -34,9 +35,10 @@ export default defineComponent({
     const size = ref(props.pageSize)
 
     // changePageSize
-    const cps = inject('changePageSize')
+    // const cps = inject('changePageSize')
     const changePageSize = (s)=>{
-      cps && cps(s)
+      ctx.emit('changePageSize', s)
+      // cps && cps(s)
     }
     return {
       size,
