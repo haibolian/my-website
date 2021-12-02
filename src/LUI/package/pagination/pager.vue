@@ -94,8 +94,8 @@ export default defineComponent({
     const pages = computed(()=>{
       const { currentPage, maxShowCount, pageCount } = props
       const halfMiddlePage = (maxShowCount - 2 - 1) / 2
-      showPrevMore.value = currentPage - halfMiddlePage > 2
-      showNextMore.value = pageCount - (currentPage + halfMiddlePage) >= 2
+      showPrevMore.value = maxShowCount >= pageCount ? false :currentPage - halfMiddlePage > 2
+      showNextMore.value = maxShowCount >= pageCount ? false : pageCount - (currentPage + halfMiddlePage) >= 2
       let arr = []
       if(!showPrevMore.value && showNextMore.value) {
         arr = generatePage(maxShowCount - 1)
@@ -105,6 +105,9 @@ export default defineComponent({
       }
       if(showPrevMore.value && !showNextMore.value) {
         arr = generatePage(pageCount - 1, pageCount - maxShowCount + 2)
+      }
+      if(!showPrevMore.value && !showNextMore.value) {
+        arr = generatePage(pageCount -1 ,2)
       }
       return arr
     })
