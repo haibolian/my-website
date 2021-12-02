@@ -11,9 +11,9 @@
       <slot name="prepend">{{ prepend }}</slot>
     </div>
     <input
-      ref="l-input-inner"
+      ref="l-input_inner"
       v-bind="Object.assign({}, $attrs, { class: '' })"
-      class="l-input-inner"
+      class="l-input_inner"
       :disabled="disabled"
       :value="modelValue"
       :type="showType"
@@ -45,7 +45,7 @@
 export default {
   inheritAttrs:false,
   name:'LInput',
-  emits:[ 'clear','clickPrefixIcon','clickSuffixIcon','input','change','blur','focus', 'click-prepend', 'click-append' ],
+  emits:[ 'clear','clickPrefixIcon','clickSuffixIcon','input','change','blur','focus', 'click-prepend', 'click-append', 'update:modelValue' ],
   props:{
     modelValue:[String,Number],
     type: {
@@ -97,7 +97,7 @@ export default {
     clear(){
       this.$emit('update:modelValue','')
       this.$emit('clear')
-      this.$refs['l-input-inner'].focus()
+      this.$refs['l-input_inner'].focus()
     },
     clickPrefixIcon(ev){
       if(this.prefixIconClickable) this.$emit('clickPrefixIcon',ev) 
@@ -133,7 +133,7 @@ export default {
       this.$emit('change',ev)
     },
     setPaddingByIcons(){
-      let inner = this.$refs['l-input-inner']
+      let inner = this.$refs['l-input_inner']
       let suffixBox = this.$refs['l-icon-suffix-box']
       let prefixBox = this.$refs['l-icon-prefix-box']
       prefixBox && prefixBox.clientWidth ? inner.style.paddingLeft = prefixBox.clientWidth + 'px' : ''
