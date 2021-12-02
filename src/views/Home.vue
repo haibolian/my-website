@@ -52,25 +52,31 @@
     <l-option value='12' label='玉米'></l-option>
     <l-option value='13' label='高点'></l-option>
   </l-select>
-  <h5>分页-element</h5>
-  <el-pagination
-    :page-sizes="[100, 200, 300, 400, 500]"
-    :page-size="pageSize"
-    :total="4000"
-    layout="prev, pager,next, total, sizes, jumper, slot"
-  >
-  </el-pagination>
   <h5>分页-LUI</h5>
   <l-pagination
     layout="total, sizes, prev, pager, next, jumper, slot"
     :page-sizes="[100, 200, 300, 400, 500]"
     :page-size="pageSize"
-    :page-count="20"
-    :currentPage="4"
+    :total="2000"
+    background
+    :currentPage="1"
     @size-change="changePageSize"
     @page-change="changePage"
   >
+  
   </l-pagination>
+
+  <h5>分页-element</h5>
+  <el-pagination
+    :page-sizes="[100, 200, 300, 400, 500]"
+    :page-size="pageSize"
+    :total="4000"
+    layout="jumper, prev, pager,next, total, sizes, slot"
+    @current-change="ccccc"
+    @size-change="wwwww"
+  >
+  </el-pagination>
+
   
   </div>
 </template>
@@ -87,11 +93,17 @@
         arr:[],
         radio:'',
         select:'',
-        pageSize: 200,
+        pageSize: 300,
         currentPage:1
       }
     },
     methods:{
+      ccccc(){
+        console.log('page-change');
+      },
+      wwwww(){
+        console.log('size-change');
+      },
       handleBtnClick(e){
         console.log(e);
       },
