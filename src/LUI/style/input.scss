@@ -7,7 +7,7 @@
   display: flex;
   font-size: 14px;
 }
-.l-input-inner{
+.l-input_inner{
   width: 100%;
   height: 32px;
   box-sizing: border-box;
@@ -18,14 +18,14 @@
     color: rgba($color: $text-second, $alpha: 0.7);
   }
 }
-.l-input:not(.is-disabled) .l-input-inner:hover{
+.l-input:not(.is-disabled) .l-input_inner:hover{
   border-color: $border-color-hover;
   box-shadow: $box-shadow-shallow;
 }
-.l-input:not(.is-disabled) .l-input-inner:active{
+.l-input:not(.is-disabled) .l-input_inner:active{
   border-color: $border-color-active !important;
 }
-.l-input:not(.is-disabled) .l-input-inner:focus{
+.l-input:not(.is-disabled) .l-input_inner:focus{
   border: 1px solid $border-color-focus;
   box-shadow: $box-shadow-shallow;
 }
@@ -94,26 +94,26 @@
   border-radius: 0 $border-radius $border-radius 0;
 }
 
-.l-input-prepend+.l-input-inner{
+.l-input-prepend+.l-input_inner{
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-.l-input-group-append .l-input-inner{
+.l-input-group-append .l-input_inner{
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
 // 尺寸 size
-.l-input-small .l-input-inner{
+.l-input-small .l-input_inner{
   height: 28px;
 }
-.l-input-large .l-input-inner{
+.l-input-large .l-input_inner{
   height: 36px;
 }
 
  // 禁用
  .l-input.is-disabled{
-   .l-input-inner{
+   .l-input_inner{
      background-color: $background-color-disabled;
      border-color: $border-color-disabled;
      cursor: not-allowed;
