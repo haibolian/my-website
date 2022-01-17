@@ -1,0 +1,20 @@
+@import './variables.scss';
+
+.l-table {
+  overflow: auto;
+  height: 100%;
+  .l-table-wrapper {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  .is-current {
+    background-color: rgba($color: $color-main, $alpha: .6);
+  }
+}
+
+.l-table-head, .l-table-body {
+  width: 100%;
+}
+

@@ -14,6 +14,7 @@
 @import './counter.scss';
 @import './pagination.scss';
 @import './progress.scss';
+@import './table.scss';
 
 *{
   margin: 0;
@@ -28,4 +29,16 @@
 
 ul{
   list-style: none;
+}
+
+.is-left {
+  text-align: left;
+}
+
+.is-center {
+  text-align: center;
+}
+
+.is-right {
+  text-align: right;
 }
