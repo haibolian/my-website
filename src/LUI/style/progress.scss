@@ -1,0 +1,36 @@
+@import './variables.scss';
+
+.l-progress {
+  margin-bottom: 15px;
+}
+
+.l-progress_bar {
+  height: 8px;
+  border-radius: 5px;
+}
+
+.l-progress_top {
+  position: absolute;
+  transition: width 1s ease-in-out;
+}
+
+.l-progress_bottom {
+  background-color:#eee;
+}
+
+.l-progress-primary_top {
+  background-color: $color-main;
+}
+
+.l-progress-success_top {
+  background-color: $color-success;
+}
+
+.l-progress-warning_top {
+  background-color: $color-warning;
+}
+
+.l-progress-danger_top {
+  background-color: $color-danger;
+}
+
