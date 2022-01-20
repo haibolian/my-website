@@ -1,5 +1,5 @@
-import { defineComponent, h, getCurrentInstance, watch, ref } from "vue"
-import { getAlignClass } from "./style"
+import { defineComponent, h, getCurrentInstance, watch, ref, } from "vue"
+import { getAlignClass, getValidHeight } from "./style"
 
 export default defineComponent({
   name: 'LTableBody',
@@ -18,6 +18,7 @@ export default defineComponent({
     const instance = getCurrentInstance()
     let currentRow = ref(null)
 
+    // 观察data变化
     watch(props.data, (newData)=>{
       handleCurrentRow(newData)
     })
@@ -26,21 +27,22 @@ export default defineComponent({
       if(!newData.includes(currentRow.value)) currentRow.value = null
     }
 
+    // 当前行变化
     watch(currentRow, (newRow, oldRow)=>{
-      instance.parent?.emit('currentRow-change', newRow)
+      instance?.emit('currentRow-change', newRow)
     })
 
-
+    // 单击事件
     const rowClick = function(row, col){
       return (e)=> {
         currentRow.value = row
-        instance.parent?.emit('row-click', row, col, e)
+        instance?.emit('row-click', row, col, e)
       }
     }
-
+    // 双击事件
     const dbRowClick = (row, col) => {
       return (e)=> {
-        instance.parent?.emit('row-dblclick', row, col, e)
+        instance?.emit('row-dblclick', row, col, e)
       }
     }
     return {
@@ -62,10 +64,14 @@ export default defineComponent({
     }
 
     const trs = this.data.map((row, index) => {
+      const { highlightCurrentRow, bodyRowHeight } = this.$parent
       return h(
-        'tr', 
+        'tr',
         {
-          class: ['l-table-row', row == this.currentRow ? 'is-current' : '']
+          class: ['l-table-body-tr', highlightCurrentRow && row == this.currentRow ? 'is-current' : ''],
+          style: {
+            height: getValidHeight(bodyRowHeight)
+          }
         }, 
         tds(row, index))
     })

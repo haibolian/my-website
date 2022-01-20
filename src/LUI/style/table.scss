@@ -1,8 +1,10 @@
 @import './variables.scss';
 
 .l-table {
+  font-size: 14px;
   overflow: auto;
   height: 100%;
+  
   .l-table-wrapper {
     width: 100%;
     border-spacing: 0;
@@ -10,11 +12,54 @@
     table-layout: fixed;
   }
   .is-current {
-    background-color: rgba($color: $color-main, $alpha: .6);
+    background-color: rgba($color: $color-main, $alpha: .15);
+    transition: background-color .2s ease-in-out;
   }
+
 }
 
 .l-table-head, .l-table-body {
   width: 100%;
+  th, td {
+    padding: 0 10px;
+  }
 }
 
+.l-table-head {
+  color: $table-head-color;
+  font-weight: bold;
+}
+
+.l-table-body-tr:not(:last-child), .l-table-head-tr, .l-table-wrapper {
+  border-bottom: 1px solid $border-color-second;
+}
+
+.l-table-body-tr {
+  color: $text-normal;
+  transition: background-color .2s ease-in-out;
+  &:hover {
+    background-color: #f5f7fa;
+    transition: background-color .1s;
+  }
+}
+
+
+// border
+.l-table-border{
+  .l-table-wrapper {
+    // border: 1px solid $border-color-second;
+  }
+  .l-table-head-tr {
+    border: 1px solid $border-color-second;
+  }
+  .l-table-head-tr th:not(:last-child), .l-table-body-tr td:not(:last-child) {
+    border-right: 1px solid $border-color-second;
+  }
+}
+
+// fixed head
+.l-table-head {
+  position: sticky;
+  top: 0;
+
+}
