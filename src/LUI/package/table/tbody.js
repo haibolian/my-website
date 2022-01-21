@@ -1,5 +1,5 @@
 import { defineComponent, h, getCurrentInstance, watch, ref, } from "vue"
-import { getAlignClass, getValidHeight } from "./style"
+import { getCellClass, getValidHeight } from "./style"
 
 export default defineComponent({
   name: 'LTableBody',
@@ -53,17 +53,17 @@ export default defineComponent({
   },
   render(){
     const tds = (row, $index)=> {
-      return this.columns.map(col => h(
+      return this.columns.map((col, colIndex) => h(
         'td',
         {
-          class: getAlignClass(col),
+          class: getCellClass(col, colIndex),
           onClick: this.rowClick(row, col),
           onDblclick: this.dbRowClick(row, col)
         }, 
         col.slots && col.slots.default ? col.slots.default({ row, $index }) : row[col.prop]))
     }
 
-    const trs = this.data.map((row, index) => {
+    const trs = this.data.map((row, rowIndex) => {
       const { highlightCurrentRow, bodyRowHeight } = this.$parent
       return h(
         'tr',
@@ -73,10 +73,19 @@ export default defineComponent({
             height: getValidHeight(bodyRowHeight)
           }
         }, 
-        tds(row, index))
+        tds(row, rowIndex))
     })
 
-    return h('tbody', { class: 'l-table-body' }, trs)
+    return (
+      <table class="l-table-body__table">
+        <colgroup>
+          { h( 'col') }
+        </colgroup>
+        <tbody class="l-table-body">
+          { trs }
+        </tbody>
+      </table>
+    )
   }
 
 })

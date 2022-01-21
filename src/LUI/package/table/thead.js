@@ -1,5 +1,5 @@
 import { defineComponent, h, ref } from "vue";
-import { getAlignClass, getValidHeight } from "./style"
+import { getCellClass, getValidHeight } from "./style"
 
 export default defineComponent({
   name: 'LTableHead',
@@ -8,7 +8,7 @@ export default defineComponent({
     columns: {
       type: Array,
       default: () => []
-    }
+    },
   },
   setup(props, ctx){
 
@@ -20,9 +20,18 @@ export default defineComponent({
         height: getValidHeight(this.$parent.headRowHeight)
       }
     }
-    const trs = h('tr', trAttrs, this.columns.map(col => {
-      return h('th', { class: getAlignClass(col)}, col.label)
+    const trs = h('tr', trAttrs, this.columns.map((col, index) => {
+      return h('th', { class: getCellClass(col, index)}, col.label)
     }))
-    return h('thead', { class: 'l-table-head' }, trs)
+    return (
+      <table class="l-table-head__table">
+        <colgroup>
+          { h('col') }
+        </colgroup>
+        <thead class="l-table-head">
+          { trs }
+        </thead>
+      </table>
+    )
   }
 })

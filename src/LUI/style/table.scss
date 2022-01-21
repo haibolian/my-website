@@ -1,39 +1,63 @@
 @import './variables.scss';
 
+@mixin table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+$border-style: 1px solid $border-color-second;
+
 .l-table {
   font-size: 14px;
-  overflow: auto;
-  height: 100%;
-  
-  .l-table-wrapper {
-    width: 100%;
-    border-spacing: 0;
-    border-collapse: collapse;
-    table-layout: fixed;
-  }
+  box-sizing: border-box;
   .is-current {
     background-color: rgba($color: $color-main, $alpha: .15);
     transition: background-color .2s ease-in-out;
   }
+}
 
+.l-table-fix-head .l-table-head__wrapper{
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+}
+
+.l-table-body-tr, .l-table-head-tr {
+  height: 40px;
+}
+
+.l-table-head__table, .l-table-body__table {
+  @include table
 }
 
 .l-table-head, .l-table-body {
   width: 100%;
   th, td {
+    text-align: left;
     padding: 0 10px;
+  }
+  th.is-center, td.is-center {
+    text-align: center;
+  }
+  th.is-right, td.is-right {
+    text-align: right;
   }
 }
 
+// 表头样式
 .l-table-head {
   color: $table-head-color;
   font-weight: bold;
 }
 
-.l-table-body-tr:not(:last-child), .l-table-head-tr, .l-table-wrapper {
-  border-bottom: 1px solid $border-color-second;
+// 无 border 时，边框样式
+.l-table, .l-table-body-tr:not(:last-child), .l-table-head-tr {
+  border-bottom: $border-style;
 }
 
+// body 行样式
 .l-table-body-tr {
   color: $text-normal;
   transition: background-color .2s ease-in-out;
@@ -43,23 +67,16 @@
   }
 }
 
-
 // border
 .l-table-border{
-  .l-table-wrapper {
-    // border: 1px solid $border-color-second;
+  .l-table-body-tr {
+    border-left: $border-style;
+    border-right: $border-style;
   }
   .l-table-head-tr {
-    border: 1px solid $border-color-second;
+    border: $border-style;
   }
   .l-table-head-tr th:not(:last-child), .l-table-body-tr td:not(:last-child) {
-    border-right: 1px solid $border-color-second;
+    border-right: $border-style;
   }
-}
-
-// fixed head
-.l-table-head {
-  position: sticky;
-  top: 0;
-
 }

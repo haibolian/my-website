@@ -1,25 +1,21 @@
 import { isOnlyNumber } from "../../src/utils/type"
 
+const getCellClass = (col, index) => {
+  return [
+    ['left', 'center', 'right'].includes(col.align) ? `is-${col.align}` : '',
+    `l-table-column_${index + 1}`
+  ]
+}
 
-const getAlignClass = col => ['left', 'center', 'right'].includes(col.align) ? `is-${col.align}` : 'is-left'
 
 const getValidHeight = target => {
-  if(typeof target == 'number' && !isNaN(target)) return `${target}px`
-  if(typeof target !== 'string') return '40px'
-  return target
-  // if(isOnlyNumber(target)){
-  //   return `${target}`
-  // }else{
-  //   const try_delete_px_result = target.replace('px', '')
-  //   if(isOnlyNumber(try_delete_px_result)){
-  //     return `${try_delete_px_result}px`
-  //   }else{
-  //     return '40px'
-  //   }
-  // }
+  if(typeof target !== 'string') return ''
+
+  const matcher = /^\d*$|^\d*(px|em|pt|pc|mm|cm|q|rem|ex|ch|vh|vw|vmin|vmax|in|fr)$/
+  return isOnlyNumber(target) ? `${target}px` : matcher.test(target) ? target : ''
 }
 
 export {
-  getAlignClass,
+  getCellClass,
   getValidHeight
 }

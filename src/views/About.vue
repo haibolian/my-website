@@ -1,9 +1,9 @@
 <template>
   <div class="about">
     <div class="wwwww">
-      <l-table border :data="tableData" @row-click="clickw" @row-dblclick="cliockrr" @currentRow-change="changeCuure">
+      <l-table border highlight-current-row :data="tableData" height="200" @row-click="clickw" @row-dblclick="cliockrr" @currentRow-change="changeCuure">
         <l-table-column prop="name" label="姓名"></l-table-column>
-        <l-table-column prop="age" label="年龄"></l-table-column>
+        <l-table-column align="center" prop="age" label="年龄"></l-table-column>
         <l-table-column prop="address" label="地址"></l-table-column>
       </l-table>
     </div>
@@ -15,7 +15,7 @@
     <l-button @click="dele">杀出</l-button>
     <l-button @click="revisename">改名</l-button>
     <div class="wwwww">
-      <el-table border highlight-current-row :data="tableData" @row-click="clickw" @row-dblclick="cliockrr">
+      <el-table border height="200" highlight-current-row :data="tableData" @row-click="clickw" @row-dblclick="cliockrr">
         <el-table-column prop="name" label="姓名">
           <template v-slot:default="{row, index}">
             {{ row.name }}
@@ -46,8 +46,8 @@ export default {
         { name: '孙权', age: 22, address: '江东' },
         { name: '孙权', age: 22, address: '江东' },
         { name: '孙权', age: 22, address: '江东' },
-        // { name: '孙权', age: 22, address: '江东' },
-        // { name: '孙权', age: 22, address: '江东' },
+        { name: '孙权', age: 22, address: '江东' },
+        { name: '孙权', age: 22, address: '江东' },
         // { name: '孙权', age: 22, address: '江东' },
         // { name: '孙权', age: 22, address: '江东' },
         // { name: '孙权', age: 22, address: '江东' },
@@ -107,6 +107,6 @@ export default {
   box-sizing: border-box;
   padding: 20px;
   width: 100%;
-  height: 200px;
+  // height: 200px;
 }
 </style>
