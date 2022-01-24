@@ -10,12 +10,26 @@
 $border-style: 1px solid $border-color-second;
 
 .l-table {
+  position: relative;
   font-size: 14px;
   box-sizing: border-box;
   .is-current {
     background-color: rgba($color: $color-main, $alpha: .15);
     transition: background-color .2s ease-in-out;
   }
+}
+
+.l-table::before {
+  content: '';
+  height: 1px;
+  width: 100%;
+  background-color: $border-color-second;
+  position:absolute;
+  bottom: 0px;
+}
+
+.l-table-body__wrapper {
+  overflow: auto;
 }
 
 .l-table-fix-head .l-table-head__wrapper{
@@ -53,7 +67,7 @@ $border-style: 1px solid $border-color-second;
 }
 
 // 无 border 时，边框样式
-.l-table, .l-table-body-tr:not(:last-child), .l-table-head-tr {
+.l-table-body-tr, .l-table-head-tr {
   border-bottom: $border-style;
 }
 
@@ -69,12 +83,14 @@ $border-style: 1px solid $border-color-second;
 
 // border
 .l-table-border{
+  border: $border-style;
+  border-bottom: 0;
   .l-table-body-tr {
-    border-left: $border-style;
-    border-right: $border-style;
+    // border-left: $border-style;
+    // border-right: $border-style;
   }
   .l-table-head-tr {
-    border: $border-style;
+    // border: $border-style;
   }
   .l-table-head-tr th:not(:last-child), .l-table-body-tr td:not(:last-child) {
     border-right: $border-style;

@@ -1,21 +1,3 @@
-<template>
-  <div 
-    :class="[
-      'l-table', 
-      border && 'l-table-border', 
-      isFixedHaed && 'l-table-fix-head'
-    ]" 
-    :style="tableStyle"
-    ref="table"
-  >
-    <div class="l-table-head__wrapper" ref="headerWrapper">
-      <l-table-head :columns="columns"></l-table-head>
-    </div>
-    <div class="l-table-body__wrapper" ref="bodyWrapper" style="bodyWrapperStyle">
-      <l-table-body :data="data" :columns="columns"></l-table-body>
-    </div>
-  </div>
-</template>
 <script>
 import { defineComponent, ref, toRefs, computed, h, provide} from 'vue'
 import LTableHead from './thead'
@@ -60,7 +42,6 @@ export default defineComponent({
 
     const tableStyle = computed(()=>{
       return {
-        overflow: isFixedHaed ? 'auto' : '',
         height: getValidHeight(props.height) 
       }
     })
@@ -70,9 +51,15 @@ export default defineComponent({
     const bodyWrapper = ref(null)
     const headerWrapper = ref(null)
 
-    const bodyWrapperStyle = ()=>{
-      
-    }
+    const bodyWrapperStyle = computed(() => {
+      let height = ''
+      if(table.value && headerWrapper.value) {
+        height = table.value.offsetHeight - headerWrapper.value.offsetHeight + 'px'
+      }
+      return {
+        height
+      }
+    })
 
     return {
       columns,
@@ -81,9 +68,30 @@ export default defineComponent({
       isFixedHaed,
       table,
       bodyWrapper,
-      headerWrapper
+      headerWrapper,
+      bodyWrapperStyle
     }
-
+  },
+  render(){
+    const { border, isFixedHaed, tableStyle, columns, data, bodyWrapperStyle } = this
+    return (
+      <div 
+        class={[
+          'l-table', 
+          border && 'l-table-border', 
+          isFixedHaed && 'l-table-fix-head'
+        ]}
+        style={tableStyle}
+        ref="table"
+      >
+        <div class="l-table-head__wrapper" ref="headerWrapper">
+          <l-table-head columns={columns}></l-table-head>
+        </div>
+        <div class="l-table-body__wrapper" ref="bodyWrapper" style={bodyWrapperStyle}>
+          <l-table-body data={data} columns={columns}></l-table-body>
+        </div>
+      </div>
+    )
   }
 });
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <div class="wwwww">
-      <l-table border highlight-current-row :data="tableData" height="200" @row-click="clickw" @row-dblclick="cliockrr" @currentRow-change="changeCuure">
+      <l-table highlight-current-row border height="300" :data="tableData" @row-click="clickw" @row-dblclick="cliockrr" @currentRow-change="changeCuure">
         <l-table-column prop="name" label="姓名"></l-table-column>
         <l-table-column align="center" prop="age" label="年龄"></l-table-column>
         <l-table-column prop="address" label="地址"></l-table-column>
@@ -15,7 +15,7 @@
     <l-button @click="dele">杀出</l-button>
     <l-button @click="revisename">改名</l-button>
     <div class="wwwww">
-      <el-table border height="200" highlight-current-row :data="tableData" @row-click="clickw" @row-dblclick="cliockrr">
+      <el-table  height="300" border highlight-current-row :data="tableData" @row-click="clickw" @row-dblclick="cliockrr">
         <el-table-column prop="name" label="姓名">
           <template v-slot:default="{row, index}">
             {{ row.name }}
@@ -39,15 +39,15 @@ export default {
         { name: '张三', age: 24, address: '北京市西城区监狱' },
         { name: '李斯', age: 22, address: '秦国咸阳' },
         { name: '李白', age: 22, address: '大唐长安' },
-        { name: '苏轼', age: 22, address: '浙江杭州' },
-        { name: '曹操', age: 22, address: '许昌' },
-        { name: '孙权', age: 22, address: '江东' },
-        { name: '孙权', age: 22, address: '江东' },
-        { name: '孙权', age: 22, address: '江东' },
-        { name: '孙权', age: 22, address: '江东' },
-        { name: '孙权', age: 22, address: '江东' },
-        { name: '孙权', age: 22, address: '江东' },
-        { name: '孙权', age: 22, address: '江东' },
+        // { name: '苏轼', age: 22, address: '浙江杭州' },
+        // { name: '曹操', age: 22, address: '许昌' },
+        // { name: '孙权', age: 22, address: '江东' },
+        // { name: '孙权', age: 22, address: '江东' },
+        // { name: '孙权', age: 22, address: '江东' },
+        // { name: '孙权', age: 22, address: '江东' },
+        // { name: '孙权', age: 22, address: '江东' },
+        // { name: '孙权', age: 22, address: '江东' },
+        // { name: '孙权', age: 22, address: '江东' },
         // { name: '孙权', age: 22, address: '江东' },
         // { name: '孙权', age: 22, address: '江东' },
         // { name: '孙权', age: 22, address: '江东' },
