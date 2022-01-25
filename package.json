@@ -1,14 +1,11 @@
 {
   "name": "lingfan-ui",
   "version": "0.0.1",
-  "private": false,
-  "main": "./src/LUI/index.ts",
-  "files": [
-    "./src/LUI"
-  ],
+  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "build-bundle": "vue-cli-service build --target lib --name lingfan-ui ./src/LUI/index.ts"
   },
   "dependencies": {
     "async-validator": "^4.0.3",
