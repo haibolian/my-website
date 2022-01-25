@@ -2,7 +2,7 @@
 import { defineComponent, ref, toRefs, computed, h, provide} from 'vue'
 import LTableHead from './thead'
 import LTableBody from "./tbody"
-import { getAlignClass, getValidHeight } from "./style"
+import { getCellClass, getValidHeight } from "./style"
 
 export default defineComponent({
   name: 'LTable',
@@ -63,7 +63,7 @@ export default defineComponent({
 
     return {
       columns,
-      getAlignClass,
+      getCellClass,
       tableStyle,
       isFixedHaed,
       table,
