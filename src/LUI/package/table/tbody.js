@@ -45,10 +45,25 @@ export default defineComponent({
         instance?.emit('row-dblclick', row, col, e)
       }
     }
+
+    const drawRow = (row, rowIndex, col, colIndex) => {
+      if(col.slots && col.slots.default) {
+        return col.slots.default({ row, rowIndex })
+      }
+      if(col.type == 'index') {
+        return rowIndex + 1
+      }
+      if(col.type == 'selection') {
+        
+      }
+      return row[col.prop]
+      
+    }
     return {
       rowClick,
       dbRowClick,
-      currentRow
+      currentRow,
+      drawRow
     }
   },
   render(){
@@ -59,9 +74,9 @@ export default defineComponent({
           class: getCellClass(col, colIndex),
           onClick: this.rowClick(row, col),
           onDblclick: this.dbRowClick(row, col)
-        }, 
-        col.slots && col.slots.default ? col.slots.default({ row, $index }) : row[col.prop]))
-    }
+        },
+        this.drawRow(row, $index, col, colIndex)
+      ))}
 
     const trs = this.data.map((row, rowIndex) => {
       const { highlightCurrentRow, bodyRowHeight } = this.$parent

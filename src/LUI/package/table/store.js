@@ -1,0 +1,9 @@
+class Store {
+  constructor(){
+
+  }
+
+  dispatch(){
+    
+  }
+}
