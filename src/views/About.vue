@@ -120,9 +120,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.asdasdad {
-  background: url(edit.png);
-}
 .dock {
   width: 800px;
 }
