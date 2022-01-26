@@ -4,8 +4,8 @@
   position: fixed;
   box-sizing: border-box;
   background-color: rgba(235, 235, 235, 0.6);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   box-shadow: 0 10px 10px rgba(17, 17, 17, 0.3);
   border: 1px solid rgba(218, 218, 218, 0.6);
   border-radius: 15px;
@@ -21,12 +21,8 @@
     margin: 10px 0;
   }
 }
-.l-dock-left {
-  left: 1%;
-}
-.l-dock-right {
-  right: 1%;
-}
+.l-dock-left { left: 1%; }
+.l-dock-right { right: 1%; }
 
 .l-dock-bottom, .l-dock-top {
   height: 60px;
@@ -37,12 +33,8 @@
     margin: 0 10px;
   }
 }
-.l-dock-top {
-  top: 2%;
-}
-.l-dock-bottom {
-  bottom: 2%;
-}
+.l-dock-top { top: 2%; }
+.l-dock-bottom { bottom: 2%; }
 
 .l-dock-boat {
   display: inline-block;
@@ -70,7 +62,7 @@ $tranXF: translateX(-6px);
     transform: scale(1.5,1.5) $tran;
   }
 }
-.l-dock-top { @include translate($tranYT) };
+.l-dock-top { @include translate($tranYF) };
 .l-dock-bottom { @include translate($tranYF) };
 .l-dock-left { @include translate($tranXT) };
 .l-dock-right { @include translate($tranXF) };

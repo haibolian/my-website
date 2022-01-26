@@ -9,7 +9,10 @@ export default defineComponent({
   },
   props:{
     position: {
-      type: String
+      type: String,
+      validator(val){
+        return ['left', 'right', 'top', 'bottom'].includes(val)
+      }
     }
   },
   setup(props, ctx){
@@ -27,6 +30,9 @@ export default defineComponent({
       <teleport to='body'>
         <div class="l-dock" class={this.positionClass}>
           { this.$slots.default() }
+          <span class="l-dock-close">
+            <i class="l-icon icon-minus-circle"></i>
+          </span>
         </div>
       </teleport>
     )
