@@ -1,0 +1,35 @@
+@import './variables.scss';
+.l-dock {
+  height: 60px;
+  z-index: 999;
+  position: fixed;
+  bottom: 2%;
+  left: 50%;
+  transform:translateX(-50%);
+  padding: 5px 20px;
+  box-sizing: border-box;
+  background-color: rgba(235, 235, 235, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 10px 10px rgba(17, 17, 17, 0.3);
+  border: 1px solid rgba(218, 218, 218, 0.6);
+  border-radius: 15px;
+}
+
+.l-dock-boat {
+  display: inline-block;
+  margin: 0 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 50px;
+  height: 100%;
+  font-size: 48px;
+  line-height: 48px;
+  text-align: center;
+  transition: all .2s ease-in-out;
+  &:hover {
+    transition: all .2s ease-in-out;
+    transform: scale(1.5,1.5) translateY(-10px);
+    z-index: 1000;
+  }
+}
