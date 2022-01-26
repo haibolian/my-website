@@ -1,12 +1,7 @@
 @import './variables.scss';
 .l-dock {
-  height: 60px;
   z-index: 999;
   position: fixed;
-  bottom: 2%;
-  left: 50%;
-  transform:translateX(-50%);
-  padding: 5px 20px;
   box-sizing: border-box;
   background-color: rgba(235, 235, 235, 0.6);
   backdrop-filter: blur(6px);
@@ -14,11 +9,43 @@
   box-shadow: 0 10px 10px rgba(17, 17, 17, 0.3);
   border: 1px solid rgba(218, 218, 218, 0.6);
   border-radius: 15px;
+  transition: all .4s ease-in;
+}
+
+.l-dock-left, .l-dock-right {
+  width: 60px;
+  top: 50%;
+  transform:translateY(-50%);
+  padding: 20px 5px;
+  .l-dock-boat {
+    margin: 10px 0;
+  }
+}
+.l-dock-left {
+  left: 1%;
+}
+.l-dock-right {
+  right: 1%;
+}
+
+.l-dock-bottom, .l-dock-top {
+  height: 60px;
+  left: 50%;
+  transform:translateX(-50%);
+  padding: 5px 20px;
+  .l-dock-boat {
+    margin: 0 10px;
+  }
+}
+.l-dock-top {
+  top: 2%;
+}
+.l-dock-bottom {
+  bottom: 2%;
 }
 
 .l-dock-boat {
   display: inline-block;
-  margin: 0 10px;
   box-sizing: border-box;
   cursor: pointer;
   width: 50px;
@@ -28,8 +55,22 @@
   text-align: center;
   transition: all .2s ease-in-out;
   &:hover {
-    transition: all .2s ease-in-out;
-    transform: scale(1.5,1.5) translateY(-10px);
     z-index: 1000;
+    transition: all .2s ease-in-out;
   }
 }
+
+// animation
+$tranYT: translateY(6px);
+$tranYF: translateY(-6px);
+$tranXT: translateX(6px);
+$tranXF: translateX(-6px);
+@mixin translate($tran){
+  .l-dock-boat:hover {
+    transform: scale(1.5,1.5) $tran;
+  }
+}
+.l-dock-top { @include translate($tranYT) };
+.l-dock-bottom { @include translate($tranYF) };
+.l-dock-left { @include translate($tranXT) };
+.l-dock-right { @include translate($tranXF) };
