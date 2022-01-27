@@ -1,11 +1,14 @@
 @import './variables.scss';
+$backgroudColor: rgba(235, 235, 235, 0.6);
+$borderColor: rgba(218, 218, 218, 0.6);
+$fontColor: rgb(59, 59, 59);
 .l-dock {
   z-index: 999;
   position: fixed;
   box-sizing: border-box;
-  background-color: rgba(235, 235, 235, 0.6);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background-color: $backgroudColor;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   box-shadow: 0 10px 10px rgba(17, 17, 17, 0.3);
   border: 1px solid rgba(218, 218, 218, 0.6);
   border-radius: 15px;
@@ -37,6 +40,7 @@
 .l-dock-bottom { bottom: 2%; }
 
 .l-dock-boat {
+  color: $fontColor;
   display: inline-block;
   box-sizing: border-box;
   cursor: pointer;
@@ -66,3 +70,28 @@ $tranXF: translateX(-6px);
 .l-dock-bottom { @include translate($tranYF) };
 .l-dock-left { @include translate($tranXT) };
 .l-dock-right { @include translate($tranXF) };
+
+// hidden 
+.l-dock-hidden {
+  position: absolute;
+  top: -8px;
+  right: -3px;
+  cursor: pointer;
+}
+.l-dock-hidden .l-icon {
+  background-color: rgba(235, 235, 235, 1);
+  color: $fontColor;
+  border-radius: 50%;
+}
+
+// bank
+.l-dock-bank {
+  cursor: pointer;
+  font-size: 3em;
+  left: 1em;
+  bottom: 1.5em;
+  z-index: 999;
+  position: fixed;
+  box-sizing: border-box;
+  transition: all .4s ease-in;
+}

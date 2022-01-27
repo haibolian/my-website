@@ -1,5 +1,5 @@
 <script>
-import { computed, defineComponent, onBeforeMount, onMounted, ref, Teleport } from 'vue'
+import { computed, defineComponent, ref, Teleport } from 'vue'
 export default defineComponent({
   name:'LDock',
   componentName: 'LDock',
@@ -13,27 +13,69 @@ export default defineComponent({
       validator(val){
         return ['left', 'right', 'top', 'bottom'].includes(val)
       }
+    },
+    showHidden: {
+      type: Boolean
     }
   },
   setup(props, ctx){
+    // dock 栏位置
     const positionClass = computed(()=>{
       const { position } = props
       return ['top', 'right', 'bottom', 'left'].includes(position) ? `l-dock-${position}` : 'l-dock-bottom'
     })
     
+    // 控制隐藏按钮的显示
+    let mouseoverDock = ref(false)
+    const showHiddenIcon = computed(()=>{
+      return props.showHidden && mouseoverDock.value ? '' : ''
+    })
+
+    // 控制 dock 栏的显示
+    let showDock = ref(true)
+    const hiddenDock = () => {
+      showDock.value = false
+    }
+
+    // bank
+    const clickBank = () => {
+      showDock.value = true
+    }
+
     return {
-      positionClass
+      positionClass,
+      showHiddenIcon,
+      showDock,
+      mouseoverDock,
+      hiddenDock,
+      clickBank
     }
   },
   render(){
+    // 隐藏按钮图标
+    const hiddenElement = (
+      <span style={ { display: this.showHiddenIcon } } class="l-dock-hidden" onClick={ this.hiddenDock }>
+        <i class="l-icon icon-error"></i>
+      </span>
+    )
+    const dock = (
+      <div class="l-dock"
+        class={this.positionClass} 
+        onMouseover={ ()=> this.mouseoverDock = true } 
+        onMouseleave={ ()=> this.mouseoverDock = false }
+      >
+        { this.$slots.default?.() }
+        { this.showHidden && hiddenElement }
+      </div>
+    )
+    const bank = (
+      <div class="l-dock-bank" onClick={ this.clickBank }>
+        <l-color-icon icon-name='xiehou'></l-color-icon>
+      </div>
+    )
     return (
       <teleport to='body'>
-        <div class="l-dock" class={this.positionClass}>
-          { this.$slots.default() }
-          <span class="l-dock-close">
-            <i class="l-icon icon-minus-circle"></i>
-          </span>
-        </div>
+        { this.showDock ? dock : bank}
       </teleport>
     )
   }
