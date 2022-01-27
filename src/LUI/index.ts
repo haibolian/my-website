@@ -10,4 +10,6 @@ const install = (Vue:any)=>{
   })
 }
 
+import './icon-color.js'
+
 export default { install }

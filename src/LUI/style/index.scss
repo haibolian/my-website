@@ -24,6 +24,14 @@
   outline: none;
 }
 
+.l-color-icon-svg {
+  width: 1em; 
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
 .is-active{
   background-color: $color-main;
   color: #fff;
@@ -44,3 +52,4 @@ ul{
 .is-right {
   text-align: right;
 }
+
