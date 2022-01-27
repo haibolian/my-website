@@ -1,18 +1,22 @@
 <template>
   <div class="l-dock-boat" :title="title" @click="clickBoat">
     <slot>
-      <i :class="`l-icon icon-${icon}`"></i>
+      <l-color-icon v-if="svg" :icon-name="icon"></l-color-icon>
+      <i v-else :class="`l-icon icon-${icon}`"></i>
     </slot>
   </div>
 </template>
 
 <script>
-import { defineComponent, onBeforeMount, onMounted, ref, getCurrentInstance } from 'vue'
+import { defineComponent, getCurrentInstance, inject } from 'vue'
 import { useRoute, useRouter } from "vue-router"
+import LColorIcon from "../color-icon/color-icon"
 export default defineComponent({
   name:'LDockBoat',
   componentName:'LDockBoat',
-  components:{},
+  components:{
+    LColorIcon
+  },
   props:{
     title: {
       type: String
@@ -23,6 +27,9 @@ export default defineComponent({
     to: {
       type: String
     },
+    svg: {
+      type: Boolean
+    }
   },
   setup(props, ctx){
     const router = useRouter()
@@ -33,7 +40,7 @@ export default defineComponent({
     const clickBoat = (ev) => {
       parent.emit('boat-click', next, ev)
     }
-
+    
     return {
       clickBoat
     }
