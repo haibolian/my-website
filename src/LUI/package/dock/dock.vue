@@ -18,6 +18,7 @@ export default defineComponent({
       type: Boolean
     }
   },
+  // todo: 1. 当前节点高亮 2. 导航栏项目较多时样式问题 3. 拖拽
   setup(props, ctx){
     // dock 栏位置
     const positionClass = computed(()=>{
@@ -28,7 +29,7 @@ export default defineComponent({
     // 控制隐藏按钮的显示
     let mouseoverDock = ref(false)
     const showHiddenIcon = computed(()=>{
-      return props.showHidden && mouseoverDock.value ? '' : ''
+      return props.showHidden && mouseoverDock.value ? '' : 'none'
     })
 
     // 控制 dock 栏的显示
@@ -48,7 +49,7 @@ export default defineComponent({
       showDock,
       mouseoverDock,
       hiddenDock,
-      clickBank
+      clickBank,
     }
   },
   render(){
@@ -70,7 +71,7 @@ export default defineComponent({
     )
     const bank = (
       <div class="l-dock-bank" onClick={ this.clickBank }>
-        <l-color-icon icon-name='xiehou'></l-color-icon>
+        <l-color-icon icon-name='category'></l-color-icon>
       </div>
     )
     return (

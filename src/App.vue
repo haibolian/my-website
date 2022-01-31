@@ -6,6 +6,24 @@
         <router-link to="/">首页</router-link>
         <router-link to="/about">关于</router-link>
       </div>
+      <l-dock @boat-click="clickBoat" show-hidden>
+        <l-dock-boat to="/" title="首页" icon="home"></l-dock-boat>
+        <l-dock-boat to="/" title="文件" icon="file-open"></l-dock-boat>
+        <l-dock-boat to="/" title="仓库" icon="layers"></l-dock-boat>
+        <l-dock-boat to="/" title="通知" icon="notification"></l-dock-boat>
+        <l-dock-boat to="/" title="首页" icon="home"></l-dock-boat>
+        <l-dock-boat to="/" title="文件" icon="file-open"></l-dock-boat>
+        <l-dock-boat to="/" title="仓库" icon="layers"></l-dock-boat>
+        <l-dock-boat to="/" title="通知" icon="notification"></l-dock-boat>
+        <l-dock-boat to="/" title="首页" icon="home"></l-dock-boat>
+        <l-dock-boat to="/" title="文件" icon="file-open"></l-dock-boat>
+        <l-dock-boat to="/" title="仓库" icon="layers"></l-dock-boat>
+        <l-dock-boat to="/" title="通知" icon="notification"></l-dock-boat>
+        <l-dock-boat to="/" title="首页" icon="home"></l-dock-boat>
+        <l-dock-boat to="/" title="文件" icon="file-open"></l-dock-boat>
+        <l-dock-boat to="/" title="仓库" icon="layers"></l-dock-boat>
+        <l-dock-boat to="/" title="通知" icon="notification"></l-dock-boat>
+      </l-dock>
       <router-view/>
     </div>
     <entry v-if="showAnimation" type='right' @click="handleEntry"/>
@@ -26,6 +44,9 @@ export default {
     }
   },
   methods:{
+    clickBoat(callback, ev){
+      callback()
+    },
     finishWrite(){ 
       this.showAnimation = false
     },

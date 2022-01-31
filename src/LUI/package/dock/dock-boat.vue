@@ -1,5 +1,5 @@
 <template>
-  <div class="l-dock-boat" :title="title" @click="clickBoat">
+  <div class="l-dock-boat" :class="isCurrent" :title="title" @click="clickBoat">
     <slot>
       <l-color-icon v-if="svg" :icon-name="icon"></l-color-icon>
       <i v-else :class="`l-icon icon-${icon}`"></i>
@@ -11,6 +11,7 @@
 import { defineComponent, getCurrentInstance, inject } from 'vue'
 import { useRoute, useRouter } from "vue-router"
 import LColorIcon from "../color-icon/color-icon"
+import BOAT from './store/boat'
 export default defineComponent({
   name:'LDockBoat',
   componentName:'LDockBoat',
@@ -41,8 +42,12 @@ export default defineComponent({
       parent.emit('boat-click', next, ev)
     }
     
+    const isCurrent = () => {
+
+    }
     return {
-      clickBoat
+      clickBoat,
+      isCurrent
     }
   }
 })

@@ -2,6 +2,13 @@
 $backgroudColor: rgba(235, 235, 235, 0.6);
 $borderColor: rgba(218, 218, 218, 0.6);
 $fontColor: rgb(59, 59, 59);
+
+@mixin transition-dock {
+  transition-property: top, left, right, bottom, transform;
+  transition-duration: .4s;
+  transition-timing-function: ease-in;
+}
+
 .l-dock {
   z-index: 999;
   position: fixed;
@@ -12,7 +19,7 @@ $fontColor: rgb(59, 59, 59);
   box-shadow: 0 10px 10px rgba(17, 17, 17, 0.3);
   border: 1px solid rgba(218, 218, 218, 0.6);
   border-radius: 15px;
-  transition: all .4s ease-in;
+  @include transition-dock;
 }
 
 .l-dock-left, .l-dock-right {
