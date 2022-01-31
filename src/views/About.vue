@@ -1,11 +1,5 @@
 <template>
   <div class="about">
-    <l-dock @boat-click="clickBoat">
-      <l-dock-boat to="/" title="首页" icon="home"></l-dock-boat>
-      <l-dock-boat to="/" title="文件" icon="file-open"></l-dock-boat>
-      <l-dock-boat to="/" title="仓库" icon="layers"></l-dock-boat>
-      <l-dock-boat to="/" title="通知" icon="notification"></l-dock-boat>
-    </l-dock>
     <div class="wwwww">
       <l-table highlight-current-row border height="300" :data="tableData" @row-click="clickw" @row-dblclick="cliockrr" @currentRow-change="changeCuure">
         <l-table-column prop="name" label="姓名"></l-table-column>
