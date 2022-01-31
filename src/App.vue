@@ -15,14 +15,6 @@
         <l-dock-boat to="/" title="文件" icon="file-open"></l-dock-boat>
         <l-dock-boat to="/" title="仓库" icon="layers"></l-dock-boat>
         <l-dock-boat to="/" title="通知" icon="notification"></l-dock-boat>
-        <l-dock-boat to="/" title="首页" icon="home"></l-dock-boat>
-        <l-dock-boat to="/" title="文件" icon="file-open"></l-dock-boat>
-        <l-dock-boat to="/" title="仓库" icon="layers"></l-dock-boat>
-        <l-dock-boat to="/" title="通知" icon="notification"></l-dock-boat>
-        <l-dock-boat to="/" title="首页" icon="home"></l-dock-boat>
-        <l-dock-boat to="/" title="文件" icon="file-open"></l-dock-boat>
-        <l-dock-boat to="/" title="仓库" icon="layers"></l-dock-boat>
-        <l-dock-boat to="/" title="通知" icon="notification"></l-dock-boat>
       </l-dock>
       <router-view/>
     </div>
