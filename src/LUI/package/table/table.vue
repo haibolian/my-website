@@ -34,7 +34,7 @@ export default defineComponent({
     
   },
   setup(props, ctx){
-    const slots = ctx.slots.default?.()
+    const slots = ctx.slots.default?.()?.filter(col => col.type?.componentName == 'LTableColumn')
     const columns = slots ? slots.map(slot => Object.assign({}, slot.props, { slots: slot.children })) : []
     const isFixedHaed = computed(()=>{
       return !!getValidHeight(props.height)
