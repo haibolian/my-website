@@ -1,5 +1,7 @@
 <template>
   <div class="about">
+    <l-input-number v-if="ssss" v-model="numberValue"></l-input-number>
+    <l-input-number v-if="ssss2" v-model="numberValue"></l-input-number>
     <div class="wwwww">
       <l-table highlight-current-row border height="300" :data="tableData" @row-click="clickw" @row-dblclick="cliockrr" @currentRow-change="changeCuure">
         <l-table-column prop="name" label="姓名"></l-table-column>
@@ -25,7 +27,7 @@
     <div class="wwwww">
       <el-table  height="300" border highlight-current-row :data="tableData" @row-click="clickw" @row-dblclick="cliockrr">
         <el-table-column prop="name" label="姓名">
-          <template v-slot:default="{row, index}">
+          <template v-slot:default="{row}">
             {{ row.name }}
           </template>
         </el-table-column>
@@ -43,6 +45,9 @@ export default {
   name:'About',
   data(){
     return{
+      ssss: true,
+      ssss2: true,
+      numberValue: null,
       tableData: [
         { name: '张三', age: 24, address: '北京市西城区监狱' },
         { name: '李斯', age: 22, address: '秦国咸阳' },
