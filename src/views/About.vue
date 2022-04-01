@@ -1,7 +1,7 @@
 <template>
   <div class="about">
-    <l-input-number v-if="ssss" v-model="numberValue"></l-input-number>
-    <l-input-number v-if="ssss2" v-model="numberValue"></l-input-number>
+    <l-input-number v-if="ssss" :precision="2" v-model="numberValue"></l-input-number>
+    <l-input-number v-if="ssss2" :precision="2" v-model="numberValue"></l-input-number>
     <div class="wwwww">
       <l-table highlight-current-row border height="300" :data="tableData" @row-click="clickw" @row-dblclick="cliockrr" @currentRow-change="changeCuure">
         <l-table-column prop="name" label="姓名"></l-table-column>

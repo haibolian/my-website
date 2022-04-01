@@ -4,6 +4,7 @@
       type="text"
       :value="showValue"
       @input="handleInput"
+      @blur="handleBlur"
       >
   </div>
 </template>
@@ -21,11 +22,11 @@ export default defineComponent({
     },
     isFormatted: {
       type: Boolean,
-      default: false
+      default: true
     },
     minus: {
       type: Boolean,
-      default: false,
+      default: true,
     }
   },
   setup(props, ctx){
@@ -36,18 +37,25 @@ export default defineComponent({
     const handleInput = (event)=>{
       // let value = event.target.value?.replace(/[^-\d.]/g, '');
       // const { minus, precision, isFormatted } = props
-      // value = value
-      //   ._handleMinus(minus)
-      //   ._handlePrecision(precision)
-      //   ._handleFormat(isFormatted)
-      // ctx.emit('update:modelValue', value)
+      // value = handleMinus(value, minus);
+      // value = handlePrecision(value, precision);
+      // value = handleFormat(value, isFormatted);
+      ctx.emit('update:modelValue', event.target.value)
     }
 
-
+    const handleBlur = (event)=>{
+      let value = event.target.value?.replace(/[^-\d.]/g, '');
+      const { minus, precision, isFormatted } = props
+      value = handleMinus(value, minus);
+      value = handlePrecision(value, precision);
+      value = handleFormat(value, isFormatted);
+      ctx.emit('update:modelValue', value)
+    }
 
     return {
       showValue,
-      handleInput
+      handleInput,
+      handleBlur
     }
   }
 })
