@@ -27,6 +27,10 @@ export default defineComponent({
     minus: {
       type: Boolean,
       default: true,
+    },
+    trigger: {
+      type: String,
+      default: 'input'
     }
   },
   setup(props, ctx){
@@ -34,21 +38,24 @@ export default defineComponent({
       return props.modelValue;
     })
 
+    const isInputTrigger = computed(()=>{
+      return props.trigger !== 'blur'
+    })
     const handleInput = (event)=>{
       let value = event.target.value?.replace(/[^-\d.]/g, '');
       const { minus, precision, isFormatted } = props;
       value = handleInputtingValue(value, { minus, precision, isFormatted });
-      event.target.value =value;
-      ctx.emit('update:modelValue', value)
+      event.target.value = value;
+      ctx.emit('update:modelValue', Number(value))
     }
 
     const handleBlur = (event)=>{
-      let value = event.target.value?.replace(/[^-\d.]/g, '');
-      const { minus, precision, isFormatted } = props
-      value = handleMinus(value, minus);
-      value = handlePrecision(value, precision);
-      value = handleFormat(value, isFormatted);
-      ctx.emit('update:modelValue', value)
+      // let value = event.target.value?.replace(/[^-\d.]/g, '');
+      // const { minus, precision, isFormatted } = props
+      // value = handleMinus(value, minus);
+      // value = handlePrecision(value, precision);
+      // value = handleFormat(value, isFormatted);
+      // ctx.emit('update:modelValue', value)
     }
 
     return {
