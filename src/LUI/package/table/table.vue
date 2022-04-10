@@ -12,6 +12,10 @@ export default defineComponent({
     LTableHead
   },
   props:{
+    virtualList:{
+      type: Boolean,
+      default: false
+    },
     data: {
       type: Array,
       default: ()=> []
@@ -61,6 +65,41 @@ export default defineComponent({
       }
     })
 
+    // 返回显示的数据
+    let startIndex = ref(0)
+    const showLength = computed(()=>{
+      return 7
+    })
+    const endIndex = computed(()=>{
+      let index = startIndex.value + showLength.value
+      if( index > props.data.length ){
+        index = props.data.length
+      }
+      return index
+    })
+    const blankFill = computed(()=>{
+      return {
+        'box-sizing': 'content-box',
+        'padding-top': startIndex.value * 40 + 'px',
+        'padding-bottom': (props.data.length - endIndex.value) * 40 + 'px'
+      }
+    })
+    const scrollWrapper = function(e){
+      const { scrollTop } = e.target
+      startIndex.value = Math.floor(scrollTop / 40)
+      console.log('startIndex.value',startIndex.value);
+      console.log('endIndex.value',endIndex.value);
+    }
+    const showData = computed(()=>{
+      const { virtualList, data } = props
+      if(virtualList){
+        // debugger
+        return data.slice(startIndex.value, endIndex.value)
+      }else{
+        return data
+      }
+    })
+
     return {
       columns,
       getCellClass,
@@ -69,11 +108,14 @@ export default defineComponent({
       table,
       bodyWrapper,
       headerWrapper,
-      bodyWrapperStyle
+      bodyWrapperStyle,
+      showData,
+      scrollWrapper,
+      blankFill
     }
   },
   render(){
-    const { border, isFixedHaed, tableStyle, columns, data, bodyWrapperStyle } = this
+    const { border, isFixedHaed, tableStyle, columns, showData, bodyWrapperStyle, blankFill } = this
     return (
       <div 
         class={[
@@ -87,8 +129,14 @@ export default defineComponent({
         <div class="l-table-head__wrapper" ref="headerWrapper">
           <l-table-head columns={columns}></l-table-head>
         </div>
-        <div class="l-table-body__wrapper" ref="bodyWrapper" style={bodyWrapperStyle}>
-          <l-table-body data={data} columns={columns}></l-table-body>
+        <div 
+          class="l-table-body__wrapper" 
+          ref="bodyWrapper"
+          style={bodyWrapperStyle}
+          onScroll={ this.scrollWrapper }>
+          <div style={ blankFill }>
+            <l-table-body data={showData} columns={columns}></l-table-body>
+          </div>
         </div>
       </div>
     )
