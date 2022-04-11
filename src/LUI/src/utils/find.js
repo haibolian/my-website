@@ -1,7 +1,7 @@
 // 查找父组件下，componentName的组件
-export function findLChildrens(parent,componentName){
+export function findChildrens(parent,componentName){
   if(!parent || !componentName){
-    console.error("function findLChildrens parent's parent and componentName can't be undefined");
+    console.error("function findChildrens parent's parent and componentName can't be undefined");
     return []
   }
   let childrens = []
