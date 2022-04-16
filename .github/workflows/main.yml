@@ -26,6 +26,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.0
         with:
           token: ${{ secrets.ACCESS_TOKEN_MAIN }}
-          branch: gh-pages
+          repository-name: haibolian/haibolian.github.io
+          branch: main
           folder: dist
           clean: true
