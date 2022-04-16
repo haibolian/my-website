@@ -27,6 +27,6 @@ jobs:
         with:
           token: ${{ secrets.ACCESS_TOKEN_MAIN }}
           repository-name: haibolian/haibolian.github.io
-          branch: main
+          branch: gh-pages
           folder: dist
           clean: true
