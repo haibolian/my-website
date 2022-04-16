@@ -25,10 +25,7 @@ jobs:
       - name: deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.0
         with:
-          git-config-name: haibolian
-          git-config-email: 957377783@qq.com
           token: ${{ secrets.ACCESS_TOKEN_MAIN }}
-          repository-name: haibolian/haibolian.github.io
           branch: gh-pages
           folder: dist
           clean: true
