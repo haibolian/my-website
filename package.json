@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build-bundle": "vue-cli-service build --target lib --name lingfan-ui ./src/LUI/index.ts"
+    "build": "vue-cli-service build --mode production"
   },
   "dependencies": {
     "async-validator": "^4.0.3",
