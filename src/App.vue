@@ -4,7 +4,7 @@
     <div v-else class="app-navs">
       <div id="nav">
         <router-link to="/">首页</router-link>
-        <router-link to="/about">关于</router-link>
+        <router-link to="/about">关于页</router-link>
       </div>
       <!-- <l-dock @boat-click="clickBoat" show-hidden>
         <l-dock-boat to="/" title="首页" icon="home"></l-dock-boat>
