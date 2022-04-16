@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
   configureWebpack:{
     resolve:{
-      alias:{ 
+      alias:{
         '@': path.resolve(__dirname, 'src'),
         '@LUI': path.resolve(__dirname, 'src/LUI')
       }
